@@ -32,28 +32,28 @@ namespace MyMarketingBackEnd.WebApp.Controllers
         [ActionName("SaveClient")]
         public ActionResult SaveClientDetails(ClientVM clientObj, string currentStep)
         {
-            //if (ModelState.IsValid)
-            //{
-            //    try
-            //    {
-            //        if (ClientBAObject.CreateClient(clientObj))
-            //            return GetBusinessDetails(clientObj, (Convert.ToInt32(currentStep) + 1).ToString());
-            //        else
-            //            throw new Exception("Some error occurred");
-            //    }
-            //    catch (Exception ex)
-            //    {
-            //        ModelState.AddModelError("Error", ex.Message);
-            //        ModelState.AddModelError("More Details", ex);
-            //        ViewData["StartStepNum"] = currentStep;
-            //        return View("Index");
-            //    }
-            //}
-            //else
-            //{
-            //    ViewData["StartStepNum"] = currentStep;
-            //    return View("Index");
-            //}
+            if (ModelState.IsValid)
+            {
+                try
+                {
+                    if (ClientBAObject.CreateClient(clientObj))
+                        return GetBusinessDetails(clientObj, (Convert.ToInt32(currentStep) + 1).ToString());
+                    else
+                        throw new Exception("Some error occurred");
+                }
+                catch (Exception ex)
+                {
+                    ModelState.AddModelError("Error", ex.Message);
+                    ModelState.AddModelError("More Details", ex);
+                    ViewData["StartStepNum"] = currentStep;
+                    return View("Index");
+                }
+            }
+            else
+            {
+                ViewData["StartStepNum"] = currentStep;
+                return View("Index");
+            }
 
             return GetBusinessDetails(clientObj, (Convert.ToInt32(currentStep) + 1).ToString());
         }
@@ -73,7 +73,6 @@ namespace MyMarketingBackEnd.WebApp.Controllers
         public ActionResult SaveBizDetails(ClientVM clientObj, string currentStep)
         {
             // #remove
-            clientObj.Business[0].ClientId = clientObj.ClientId = 8;
             if (ModelState.IsValidField("Business[0].BizDescription") && ModelState.IsValidField("Business[0].NegotiatedPrice"))
             {
                 clientObj.Business[0].BizGalleryPath = ControllerHelper.GetGalleryDirectory(clientObj.Business[0].ClientId);
@@ -100,16 +99,24 @@ namespace MyMarketingBackEnd.WebApp.Controllers
         [ActionName("UploadLogo")]
         public ActionResult SaveLogoToDirectory(ClientBusiness clientObj, string currentStep, HttpPostedFileBase fileBase)
         {
-            
+
             if (fileBase != null && fileBase.ContentLength > 0)
             {
                 try
                 {
-
+                    clientObj.BizGalleryPath = ControllerHelper.GetGalleryDirectory(clientObj.ClientId);
                     if (ControllerHelper.SaveLogo(clientObj, fileBase))
                     {
                         if (BusinessBAObject.UploadLogo(clientObj))
-                            return SaveImagesToGallery(clientObj, (Convert.ToInt32(currentStep) + 1).ToString());
+                        {
+                            ClientVM clientVMObj = new ClientVM(); // Passing the view model itself to the GET of GalleryAction
+                            ClientBusinessGallery cbg = new ClientBusinessGallery();
+                            cbg.BizId = clientObj.BizId;
+                            cbg.ClientId = clientObj.ClientId;
+                            clientVMObj.Business = new List<ClientBusinessGallery>();
+                            clientVMObj.Business.Add(cbg);
+                            return SaveImagesToGallery(clientVMObj, (Convert.ToInt32(currentStep) + 1).ToString());
+                        }
                         else
                         {
                             ControllerHelper.DeleteLogoOnDBUpdateFail(clientObj, fileBase);
@@ -135,7 +142,7 @@ namespace MyMarketingBackEnd.WebApp.Controllers
         }
 
         [ActionName("UploadToGallery")]
-        public ActionResult SaveImagesToGallery(ClientBusiness clientObj, string currentStep)
+        public ActionResult SaveImagesToGallery(ClientVM clientObj, string currentStep)
         {
             ViewData["StartStepNum"] = currentStep;
             return View("Index");

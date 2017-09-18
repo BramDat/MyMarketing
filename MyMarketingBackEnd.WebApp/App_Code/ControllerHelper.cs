@@ -22,24 +22,35 @@ namespace MyMarketingBackEnd.WebApp.App_Code
             clientVM.PayPeriodList = btObj.GetPayPeriods();
         }
 
-        public string GetLogoDirectory(int clientId)
+        public string GetFullLogoDirectory(int clientId)
         {
             return Path.Combine(HostingEnvironment.MapPath(IMAGE_ROOT_FOLDER_PATH), clientId.ToString(), "Logo");
         }
 
+        public string GetLogoDirectory(int clientId)
+        {
+            string rootPath = IMAGE_ROOT_FOLDER_PATH.TrimStart('~');
+            return Path.Combine(rootPath, clientId.ToString(), "Logo");
+        }
+
         public string GetGalleryDirectory(int clientId)
         {
-            string rootPath = HostingEnvironment.MapPath(IMAGE_ROOT_FOLDER_PATH);
+            string rootPath = IMAGE_ROOT_FOLDER_PATH.TrimStart('~');
             return Path.Combine(rootPath, clientId.ToString(), "Gallery");
+        }
+
+        public string GetFullGalleryDirectory(int clientId)
+        {
+            return Path.Combine(HostingEnvironment.MapPath(IMAGE_ROOT_FOLDER_PATH), clientId.ToString(), "Gallery");
         }
 
         public bool SaveLogo(ClientBusiness clientObj, HttpPostedFileBase fileBase)
         {
             try
             {
-                string logoDir = this.GetLogoDirectory(clientObj.ClientId);
+                string logoDir = this.GetFullLogoDirectory(clientObj.ClientId);
                 string logoFileFullPath = Path.Combine(logoDir, Path.GetFileName(fileBase.FileName));
-                if (Directory.Exists(logoDir))
+                if (!Directory.Exists(logoDir))
                     Directory.CreateDirectory(logoDir);
                 fileBase.SaveAs(logoFileFullPath);
                 return true;
@@ -52,7 +63,7 @@ namespace MyMarketingBackEnd.WebApp.App_Code
 
         public bool DeleteLogoOnDBUpdateFail(ClientBusiness clientObj, HttpPostedFileBase fileBase)
         {
-            string logoDir = this.GetLogoDirectory(clientObj.Business[0].ClientId);
+            string logoDir = this.GetFullLogoDirectory(clientObj.ClientId);
             string logoFileFullPath = Path.Combine(logoDir, Path.GetFileName(fileBase.FileName));
             FileInfo fi = new FileInfo(logoFileFullPath);
             if (fi.Exists)

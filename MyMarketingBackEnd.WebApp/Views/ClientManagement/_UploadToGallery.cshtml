@@ -1,1 +1,6 @@
-﻿
+﻿@model MyMarketingBackEnd.WebApp.Models.ClientVM
+@using (Html.BeginForm("", "", FormMethod.Post))
+{
+    @Html.HiddenFor(model => model.Business[0].ClientId)
+    @Html.HiddenFor(model => model.Business[0].BizId)
+}
