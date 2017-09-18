@@ -159,6 +159,7 @@ namespace MyMarketingBackEnd.DataAccess
                 {
                     con.Open();
                     SqlCommand cmd = new SqlCommand(insertQuery, con);
+
                     string bizHours = (!String.IsNullOrEmpty(clientObj.BizStartHours.ToString()) ? clientObj.BizStartHours.ToString().PadLeft(2, '0') : "")
                         + ":" +
                         (!String.IsNullOrEmpty(clientObj.BizEndHours.ToString()) ? clientObj.BizEndHours.ToString().PadLeft(2, '0') : "");
@@ -181,7 +182,7 @@ namespace MyMarketingBackEnd.DataAccess
                         new SqlParameter(){ParameterName="@BusinessDescription",SqlDbType=SqlDbType.VarChar,Value=clientObj.BizDescription, Size=750},
                         new SqlParameter(){ParameterName="@BusinessGalleryPath",SqlDbType=SqlDbType.VarChar,Value=clientObj.BizGalleryPath, Size=750},
                         new SqlParameter(){ParameterName="@BusinessWebSite",SqlDbType=SqlDbType.VarChar,Value=DBHelper.DefaultForDBNullValues(clientObj.BizWebSite), Size=200},
-                        new SqlParameter(){ParameterName="@BusinessLogoPath",SqlDbType=SqlDbType.VarChar,Value=DBHelper.DefaultForDBNullValues(clientObj.BizLogoPath), Size=750},
+                        new SqlParameter(){ParameterName="@BusinessLogoPath",SqlDbType=SqlDbType.VarChar,Value=DBNull.Value, Size=750},
                         new SqlParameter(){ParameterName="@BusinessSubCategoryNativeType",SqlDbType=SqlDbType.VarChar,Value=DBHelper.DefaultForDBNullValues(clientObj.BizSubCategoryNativeType), Size=80}
                     };
 
@@ -191,6 +192,27 @@ namespace MyMarketingBackEnd.DataAccess
                 }
 
                 return bizID;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        public bool AddLogoDetails(ClientBusiness clientObj, string updateQuery)
+        {
+            try
+            {
+                using (SqlConnection con = new SqlConnection(ConnectionStr))
+                {
+                    con.Open();
+                    SqlCommand cmd = new SqlCommand(updateQuery, con);
+                    cmd.Parameters.Add(new SqlParameter() { ParameterName = "@ClientBusinessDetailId", SqlDbType = SqlDbType.Int, Value = clientObj.BizId });
+                    cmd.Parameters.Add(new SqlParameter() { ParameterName = "@LogoPath", SqlDbType = SqlDbType.VarChar, Value = clientObj.BizLogoPath, Size = 750 });
+
+                    cmd.ExecuteNonQuery();
+                    return true;
+                }
             }
             catch (Exception ex)
             {

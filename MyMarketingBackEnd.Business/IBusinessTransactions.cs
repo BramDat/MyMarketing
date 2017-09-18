@@ -15,9 +15,9 @@ namespace MyMarketingBackEnd.Business
 
         bool UpdateBusinessDetails();
 
-        bool UploadLogo();
-
         bool UploadGallery();
+
+        bool UploadLogo(ClientBusiness cbObject);
 
     }
 }

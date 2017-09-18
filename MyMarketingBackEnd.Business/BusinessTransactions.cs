@@ -8,7 +8,7 @@ using MyMarketingBackEnd.BusinessObjects;
 
 namespace MyMarketingBackEnd.Business
 {
-    public class BusinessTransactions : IBusinessTransactions, IDisposable
+    public class BusinessTransactions : IBusinessTransactions
     {
         private ClientDataAccess clientDA;
         private GenericDataReader genericDRSingleton;
@@ -44,7 +44,9 @@ namespace MyMarketingBackEnd.Business
                 insertQuery.Append("VALUES(@ClientId,@BusinessCategoryTypeId,@BusinessSubCategoryType,@PayPeriodTypeId,@BusinessHours,@IsPremiumCustomer,@NegotiatedPrice,@IsBulkDataReceived,@IsMobileNumberToBePublicAccess,@LocationLongitude,@LocationLattitude,@CreatedDate,@IsActive,@BusinessDescription,@BusinessGalleryPath,@BusinessWebSite,@BusinessLogoPath,@BusinessSubCategoryNativeType);");
                 insertQuery.Append("SELECT CAST(scope_identity() AS int);");
 
-                returnFlag = (clientDA.AddClientBizDetails(clientBixObj, insertQuery.ToString()) > 0) ? true : false;
+                clientBixObj.BizId = clientDA.AddClientBizDetails(clientBixObj, insertQuery.ToString());
+                
+                returnFlag = (clientBixObj.BizId > 0) ? true : false;
 
             }
             catch (Exception ex)
@@ -60,19 +62,26 @@ namespace MyMarketingBackEnd.Business
             throw new NotImplementedException();
         }
 
-        public bool UploadLogo()
+        public bool UploadLogo(ClientBusiness cbObject)
         {
-            throw new NotImplementedException();
+
+            try
+            {
+                StringBuilder updateQuery = new StringBuilder("UPDATE ClientBusinessDetails SET BusinessLogoPath=@LogoPath WHERE ClientBusinessDetailId=@ClientBusinessDetailId");
+                if (clientDA.AddLogoDetails(cbObject, updateQuery.ToString()))
+                    return true;
+                else
+                    return false;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
         }
 
         public bool UploadGallery()
         {
             throw new NotImplementedException();
-        }
-
-        public void Dispose()
-        {
-            GC.Collect();
         }
     }
 }

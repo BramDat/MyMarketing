@@ -32,8 +32,8 @@
                 @Html.Partial("_BusinessDetails", Model, new ViewDataDictionary { { "PageStepCode", ViewData["StartStepNum"].ToString() } });
                                                                                                                                             break;
                     case "3":
-                @Html.Partial("_UploadLogo", Model, new ViewDataDictionary { { "PageStepCode", ViewData["StartStepNum"].ToString() } });
-                                                                                                                                       break;
+                @Html.Partial("_UploadLogo", Model.Business[0], new ViewDataDictionary { { "PageStepCode", ViewData["StartStepNum"].ToString() } });
+                                                                                                                                                   break;
                     case "4":
                 @Html.Partial("_UploadToGallery", Model, new ViewDataDictionary { { "PageStepCode", ViewData["StartStepNum"].ToString() } });
                                                                                                                                             break;

@@ -7,3 +7,12 @@ C:\Users\LENOVO\Documents\Visual Studio 2012\Projects\WCFTutorials\MyMarketingBa
 C:\Users\LENOVO\Documents\Visual Studio 2012\Projects\WCFTutorials\MyMarketingBackEnd\MyMarketingBackEnd.DataAccess\bin\Debug\MyMarketingBackEnd.BusinessObjects.pdb
 C:\Users\LENOVO\Documents\Visual Studio 2012\Projects\WCFTutorials\MyMarketingBackEnd\MyMarketingBackEnd.DataAccess\bin\Debug\MyMarketingBackEnd.Common.dll
 C:\Users\LENOVO\Documents\Visual Studio 2012\Projects\WCFTutorials\MyMarketingBackEnd\MyMarketingBackEnd.DataAccess\bin\Debug\MyMarketingBackEnd.Common.pdb
+D:\BD\SameerProject\PROJECT_CODE_BASE\MyMarketingBackEnd\MyMarketingBackEnd.DataAccess\bin\Debug\MyMarketingBackEnd.DataAccess.dll
+D:\BD\SameerProject\PROJECT_CODE_BASE\MyMarketingBackEnd\MyMarketingBackEnd.DataAccess\bin\Debug\MyMarketingBackEnd.DataAccess.pdb
+D:\BD\SameerProject\PROJECT_CODE_BASE\MyMarketingBackEnd\MyMarketingBackEnd.DataAccess\bin\Debug\MyMarketingBackEnd.BusinessObjects.dll
+D:\BD\SameerProject\PROJECT_CODE_BASE\MyMarketingBackEnd\MyMarketingBackEnd.DataAccess\bin\Debug\MyMarketingBackEnd.Common.dll
+D:\BD\SameerProject\PROJECT_CODE_BASE\MyMarketingBackEnd\MyMarketingBackEnd.DataAccess\bin\Debug\MyMarketingBackEnd.BusinessObjects.pdb
+D:\BD\SameerProject\PROJECT_CODE_BASE\MyMarketingBackEnd\MyMarketingBackEnd.DataAccess\bin\Debug\MyMarketingBackEnd.Common.pdb
+D:\BD\SameerProject\PROJECT_CODE_BASE\MyMarketingBackEnd\MyMarketingBackEnd.DataAccess\obj\Debug\MyMarketingBackEnd.DataAccess.csprojResolveAssemblyReference.cache
+D:\BD\SameerProject\PROJECT_CODE_BASE\MyMarketingBackEnd\MyMarketingBackEnd.DataAccess\obj\Debug\MyMarketingBackEnd.DataAccess.dll
+D:\BD\SameerProject\PROJECT_CODE_BASE\MyMarketingBackEnd\MyMarketingBackEnd.DataAccess\obj\Debug\MyMarketingBackEnd.DataAccess.pdb

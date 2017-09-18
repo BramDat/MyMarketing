@@ -1,8 +1,11 @@
-﻿<h2>Upload file</h2>
+﻿@model MyMarketingBackEnd.BusinessObjects.ClientBusiness
+<h2>Upload file</h2>
 @using (Html.BeginForm("UploadLogo", "ClientManagement", FormMethod.Post,
                          new { enctype = "multipart/form-data" }))
 {   
     @Html.Hidden("currentStep", ViewData["PageStepCode"].ToString())
+    @Html.HiddenFor(model => model.BizId)
+    @Html.HiddenFor(model => model.ClientId)
     <div style="float: left; margin-bottom: 10px; width: 99%;">
         <div id="fileUploadDivBtn">
             Select File
@@ -24,7 +27,7 @@
             var filePathParts = filePath.split("\\");
             var fileName = filePathParts[filePathParts.length - 1];
             $("#fileDetails").html("<p>Selected File : <span style='color:red;'>" + fileName + "</span></p>");
-            
+
         });
     });
 </script>
