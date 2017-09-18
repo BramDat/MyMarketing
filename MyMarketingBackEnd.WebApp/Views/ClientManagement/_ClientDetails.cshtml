@@ -1,7 +1,11 @@
 ﻿@model MyMarketingBackEnd.WebApp.Models.ClientVM
 @using (Html.BeginForm("SaveClient", "ClientManagement", FormMethod.Post, new { id = "formClientBasic" }))
 {
-    @Html.Hidden("currentStep", ViewData["PageStepCode"].ToString())
+   
+    if (ViewData["StartStepNum"] != null)
+    {
+        Html.Hidden("currentStep", ViewData["StartStepNum"].ToString());
+    }
     <table id="clientDetailsform" class="basicForm">
         <tbody>
             <tr>
@@ -101,6 +105,11 @@
 }
 <script type="text/javascript">
     $(document).ready(function () {
+
+        // setting all textboxes during new client is being nullified
+        $('#formClientBasic input[type="text"]').each(function () {
+            this.value = "";
+        });
 
         $(".btnCancel").click(function () {
             $('#formClientBasic input[type="text"]').each(function () {

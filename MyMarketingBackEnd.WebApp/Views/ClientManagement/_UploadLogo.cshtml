@@ -3,7 +3,7 @@
 @using (Html.BeginForm("UploadLogo", "ClientManagement", FormMethod.Post,
                          new { enctype = "multipart/form-data" }))
 {   
-    @Html.Hidden("currentStep", ViewData["PageStepCode"].ToString())
+    @Html.Hidden("currentStep", ViewData["StartStepNum"].ToString())
     @Html.HiddenFor(model => model.BizId)
     @Html.HiddenFor(model => model.ClientId)
     <div style="float: left; margin-bottom: 10px; width: 99%;">

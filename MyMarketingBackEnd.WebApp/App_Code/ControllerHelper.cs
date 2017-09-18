@@ -44,6 +44,11 @@ namespace MyMarketingBackEnd.WebApp.App_Code
             return Path.Combine(HostingEnvironment.MapPath(IMAGE_ROOT_FOLDER_PATH), clientId.ToString(), "Gallery");
         }
 
+        public string GetLogoFileRelativePath(int clientId, string fileName)
+        {
+            return Path.Combine(GetLogoDirectory(clientId), Path.GetFileName(fileName));
+        }
+
         public bool SaveLogo(ClientBusiness clientObj, HttpPostedFileBase fileBase)
         {
             try

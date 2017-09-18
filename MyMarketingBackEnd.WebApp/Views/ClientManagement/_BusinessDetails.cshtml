@@ -1,7 +1,7 @@
 ﻿@model MyMarketingBackEnd.WebApp.Models.ClientVM
 @using (Html.BeginForm("SaveBusinessDetails", "ClientManagement", FormMethod.Post))
 {
-    @Html.Hidden("currentStep", ViewData["PageStepCode"].ToString())
+    @Html.Hidden("currentStep", ViewData["StartStepNum"].ToString())
     @Html.HiddenFor(model => model.ClientId);
     <table id="bizDetailsform" class="basicForm">
         <thead>
@@ -35,8 +35,10 @@
                 <td>Select payment period</td>
                 <td>@Html.DropDownListFor(model => model.Business[0].PayPeriodId, new SelectList(Model.PayPeriodList, "Key", "Value"))</td>
                 <td>Business Hours</td>
-                <td>Start : @Html.TextBoxFor(model => model.Business[0].BizStartHours) &nbsp|&nbsp
-                    End : @Html.TextBoxFor(model => model.Business[0].BizEndHours)
+                <td>Start Hours: @Html.DropDownListFor(model => model.Business[0].BizStartHours, new SelectList(Model.BizTimingStartHours, "Key", "Value")) &nbsp|&nbsp
+                    End Hours: @Html.DropDownListFor(model => model.Business[0].BizEndHours, new SelectList(Model.BizTimingEndHours, "Key", "Value"))<br />
+                    Start Day: @Html.DropDownListFor(model => model.Business[0].BizStartWeekDay, new SelectList(Model.BizTimingStartDay, "Key", "Value")) &nbsp|&nbsp
+                    End Day: @Html.DropDownListFor(model => model.Business[0].BizEndWeekDay, new SelectList(Model.BizTimingEndDay, "Key", "Value"))
                 </td>
             </tr>
             <tr>

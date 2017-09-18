@@ -34,6 +34,10 @@ namespace MyMarketingBackEnd.BusinessObjects
 
         public string BizLogoPath { get; set; }
 
+        public string BizStartWeekDay { get; set; }
+
+        public string BizEndWeekDay { get; set; }
+
         [Required(ErrorMessage = "Negotiated Price Is Mandatory Field")]
         public decimal NegotiatedPrice { get; set; }
 

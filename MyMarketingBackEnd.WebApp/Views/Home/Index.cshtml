@@ -8,6 +8,12 @@
         font-family: Tahoma;
         font-size: 12px;
         color: rgb(0,162,232);
+        border: 1px solid aliceblue;
+        padding: 4%;
+        background-color: aliceblue;
+        width: 92%;
+        float: left;
+        text-align: center;
     }
 
     #tblHomeContent .module {
@@ -17,14 +23,12 @@
         float: left;
         width: 200px;
         margin-bottom: 10px;
-        padding:8px;
+        padding: 8px;
     }
 
     #tblHomeContent .moduleItem {
         width: 200px;
-        border-right: 1px solid #888;
         padding-left: 10px;
-        border-right: 1px solid #555;
     }
 </style>
 <div id="mainContent">
@@ -36,7 +40,7 @@
             </tr>
             <tr>
                 <td class="moduleItem">@Html.ActionLink("Add New Client", "Index", "ClientManagement", null, null)</td>
-                <td class="moduleItem">@Html.ActionLink("Edit Client", "Index", "ClientManagement", null, null)</td>
+                <td class="moduleItem">@Html.ActionLink("Edit Client", "ClientList", "ClientManagement", null, null)</td>
                 <td colspan="3"></td>
             </tr>
             <tr>

@@ -3,3 +3,8 @@ C:\Users\LENOVO\Documents\Visual Studio 2012\Projects\WCFTutorials\MyMarketingBa
 C:\Users\LENOVO\Documents\Visual Studio 2012\Projects\WCFTutorials\MyMarketingBackEnd\MyMarketingBackEnd.BusinessObjects\bin\Debug\MyMarketingBackEnd.BusinessObjects.pdb
 C:\Users\LENOVO\Documents\Visual Studio 2012\Projects\WCFTutorials\MyMarketingBackEnd\MyMarketingBackEnd.BusinessObjects\obj\Debug\MyMarketingBackEnd.BusinessObjects.dll
 C:\Users\LENOVO\Documents\Visual Studio 2012\Projects\WCFTutorials\MyMarketingBackEnd\MyMarketingBackEnd.BusinessObjects\obj\Debug\MyMarketingBackEnd.BusinessObjects.pdb
+D:\BD\SameerProject\PROJECT_CODE_BASE\MyMarketingBackEnd\MyMarketingBackEnd.BusinessObjects\bin\Debug\MyMarketingBackEnd.BusinessObjects.dll
+D:\BD\SameerProject\PROJECT_CODE_BASE\MyMarketingBackEnd\MyMarketingBackEnd.BusinessObjects\bin\Debug\MyMarketingBackEnd.BusinessObjects.pdb
+D:\BD\SameerProject\PROJECT_CODE_BASE\MyMarketingBackEnd\MyMarketingBackEnd.BusinessObjects\obj\Debug\MyMarketingBackEnd.BusinessObjects.csprojResolveAssemblyReference.cache
+D:\BD\SameerProject\PROJECT_CODE_BASE\MyMarketingBackEnd\MyMarketingBackEnd.BusinessObjects\obj\Debug\MyMarketingBackEnd.BusinessObjects.dll
+D:\BD\SameerProject\PROJECT_CODE_BASE\MyMarketingBackEnd\MyMarketingBackEnd.BusinessObjects\obj\Debug\MyMarketingBackEnd.BusinessObjects.pdb

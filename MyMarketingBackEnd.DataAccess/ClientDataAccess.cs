@@ -160,9 +160,7 @@ namespace MyMarketingBackEnd.DataAccess
                     con.Open();
                     SqlCommand cmd = new SqlCommand(insertQuery, con);
 
-                    string bizHours = (!String.IsNullOrEmpty(clientObj.BizStartHours.ToString()) ? clientObj.BizStartHours.ToString().PadLeft(2, '0') : "")
-                        + ":" +
-                        (!String.IsNullOrEmpty(clientObj.BizEndHours.ToString()) ? clientObj.BizEndHours.ToString().PadLeft(2, '0') : "");
+                    string bizHours = Common.StringHelper.FormatBusinessHours(clientObj.BizStartHours, clientObj.BizEndHours, clientObj.BizStartWeekDay, clientObj.BizEndWeekDay);
 
                     List<SqlParameter> sParamList = new List<SqlParameter>()
                     {

@@ -3,6 +3,7 @@
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+@* Adding the CSS here (instead of Layout) because this file is exclusively required for this page.*@
 <link href="~/Content/CSS/workflowBar.css" rel="stylesheet" />
 <div id="mainContent">
     <fieldset>
@@ -25,22 +26,21 @@
                 switch (ViewData["StartStepNum"].ToString())
                 {
                     case "1":
-                @Html.Partial("_ClientDetails", Model, new ViewDataDictionary { { "PageStepCode", ViewData["StartStepNum"].ToString() } });
-                                                                                                                                          break;
+                @Html.Partial("_ClientDetails", Model, Html.ViewData);
+                                                                     break;
                     case "2":
 
-                @Html.Partial("_BusinessDetails", Model, new ViewDataDictionary { { "PageStepCode", ViewData["StartStepNum"].ToString() } });
-                                                                                                                                            break;
+                @Html.Partial("_BusinessDetails", Model, Html.ViewData);
+                                                                       break;
                     case "3":
-                @Html.Partial("_UploadLogo", Model.Business[0], new ViewDataDictionary { { "PageStepCode", ViewData["StartStepNum"].ToString() } });
-                                                                                                                                                   break;
+                @Html.Partial("_UploadLogo", Model.Business[0], Html.ViewData);
+                                                                              break;
                     case "4":
-                @Html.Partial("_UploadToGallery", Model, new ViewDataDictionary { { "PageStepCode", ViewData["StartStepNum"].ToString() } });
-                                                                                                                                            break;
+                @Html.Partial("_UploadToGallery", Model, Html.ViewData);
+                                                                       break;
                 }
 
             }
         </div>
-
     </fieldset>
 </div>

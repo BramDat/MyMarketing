@@ -121,6 +121,7 @@
     <Content Include="Content\CSS\webHeader.css" />
     <Content Include="Content\CSS\workflowBar.css" />
     <Content Include="Content\Images\App_Logo.png" />
+    <Content Include="Content\Scripts\jquery.unobtrusive-ajax.js" />
     <Content Include="Global.asax" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
@@ -133,7 +134,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Content\Scripts\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
@@ -186,6 +186,9 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Shared\_Footer.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\ClientManagement\IndexListClients.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

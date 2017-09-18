@@ -2,3 +2,8 @@ C:\Users\LENOVO\Documents\Visual Studio 2012\Projects\WCFTutorials\MyMarketingBa
 C:\Users\LENOVO\Documents\Visual Studio 2012\Projects\WCFTutorials\MyMarketingBackEnd\MyMarketingBackEnd.Common\bin\Debug\MyMarketingBackEnd.Common.pdb
 C:\Users\LENOVO\Documents\Visual Studio 2012\Projects\WCFTutorials\MyMarketingBackEnd\MyMarketingBackEnd.Common\obj\Debug\MyMarketingBackEnd.Common.dll
 C:\Users\LENOVO\Documents\Visual Studio 2012\Projects\WCFTutorials\MyMarketingBackEnd\MyMarketingBackEnd.Common\obj\Debug\MyMarketingBackEnd.Common.pdb
+D:\BD\SameerProject\PROJECT_CODE_BASE\MyMarketingBackEnd\MyMarketingBackEnd.Common\obj\Debug\MyMarketingBackEnd.Common.csprojResolveAssemblyReference.cache
+D:\BD\SameerProject\PROJECT_CODE_BASE\MyMarketingBackEnd\MyMarketingBackEnd.Common\obj\Debug\MyMarketingBackEnd.Common.dll
+D:\BD\SameerProject\PROJECT_CODE_BASE\MyMarketingBackEnd\MyMarketingBackEnd.Common\bin\Debug\MyMarketingBackEnd.Common.dll
+D:\BD\SameerProject\PROJECT_CODE_BASE\MyMarketingBackEnd\MyMarketingBackEnd.Common\bin\Debug\MyMarketingBackEnd.Common.pdb
+D:\BD\SameerProject\PROJECT_CODE_BASE\MyMarketingBackEnd\MyMarketingBackEnd.Common\obj\Debug\MyMarketingBackEnd.Common.pdb

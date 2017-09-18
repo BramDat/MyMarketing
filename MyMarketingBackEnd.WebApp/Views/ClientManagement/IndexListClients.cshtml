@@ -1,0 +1,96 @@
+﻿@model Dictionary<int, string>
+@{
+    ViewBag.Title = "IndexListClients";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<script src='@Url.Content("~/Content/Scripts/jquery.unobtrusive-ajax.js")'></script>
+<style>
+    #cListAdditionalDetails {
+        float: left;
+        width: 74%;
+    }
+
+    #cListTBLWrap {
+        float: left;
+        width: 25%;
+    }
+
+    #tblClientList {
+        font-size: 12px;
+        font-family: Tahoma;
+        color: rgb(0,162,232);
+        margin: 1%;
+        float: left;
+        width: 98%;
+    }
+
+        #tblClientList th {
+            color: #fff;
+            background-color: blue;
+            border: 1px solid blue;
+            border-collapse: collapse;
+            padding: 2px;
+        }
+
+        #tblClientList td {
+            border: 1px solid #eee;
+            border-collapse: collapse;
+            padding: 2px;
+        }
+
+        #tblClientList .evenRow {
+            background-color: aliceblue;
+        }
+</style>
+
+<div id="mainContent">
+    <div id="cListTBLWrap">
+        <table id="tblClientList">
+            <thead>
+                <tr>
+                    <th>Client ID
+                    </th>
+                    <th>Client Name
+                    </th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @{ int counter = 1; }
+
+                @foreach (var item in Model.Keys)
+                {
+                    if (counter % 2 == 0)
+                    {
+                    <tr class="evenRow">
+                        <td>@item</td>
+                        <td>@Model[item]</td>
+                        <td>@Ajax.ActionLink("Edit", "EdiClient", "ClientManagement", new { id = item }, new AjaxOptions()
+                       {
+                           HttpMethod = "GET",
+                           InsertionMode = InsertionMode.InsertAfter,
+                           UpdateTargetId = "cListAdditionalDetails"
+                       }, null)</td>
+                    </tr>
+                    }
+                    else
+                    {
+                    <tr class="oddRow">
+                        <td>@item</td>
+                        <td>@Model[item]</td>
+                        <td>@Ajax.ActionLink("Edit", "EdiClient", "ClientManagement", new { id = item }, new AjaxOptions()
+                       {
+                           HttpMethod = "GET",
+                           InsertionMode = InsertionMode.InsertAfter,
+                           UpdateTargetId = "cListAdditionalDetails"
+                       }, null)</td>
+                    </tr>
+                    }
+                    counter++;
+                }
+            </tbody>
+        </table>
+    </div>
+    <div id="cListAdditionalDetails">
+    </div>
+</div>

@@ -51,11 +51,10 @@ namespace MyMarketingBackEnd.WebApp.Controllers
             }
             else
             {
+                ModelState.AddModelError("Error", "Please fill in all madatory fields.");
                 ViewData["StartStepNum"] = currentStep;
                 return View("Index");
             }
-
-            return GetBusinessDetails(clientObj, (Convert.ToInt32(currentStep) + 1).ToString());
         }
 
         [HttpGet]
@@ -104,7 +103,7 @@ namespace MyMarketingBackEnd.WebApp.Controllers
             {
                 try
                 {
-                    clientObj.BizGalleryPath = ControllerHelper.GetGalleryDirectory(clientObj.ClientId);
+                    clientObj.BizLogoPath = ControllerHelper.GetLogoFileRelativePath(clientObj.ClientId, fileBase.FileName);
                     if (ControllerHelper.SaveLogo(clientObj, fileBase))
                     {
                         if (BusinessBAObject.UploadLogo(clientObj))
@@ -142,10 +141,28 @@ namespace MyMarketingBackEnd.WebApp.Controllers
         }
 
         [ActionName("UploadToGallery")]
+        [ChildActionOnly]
         public ActionResult SaveImagesToGallery(ClientVM clientObj, string currentStep)
         {
             ViewData["StartStepNum"] = currentStep;
             return View("Index");
+        }
+
+        [HttpGet]
+        [ActionName("ClientList")]
+        public ActionResult GetClientList()
+        {
+            Dictionary<int, string> ClientList = new Dictionary<int, string>();
+            ClientList.Add(1, "test");
+            ClientList.Add(2, "test2");
+            return View("IndexListClients", ClientList);
+        }
+
+        public PartialViewResult EdiClient(string id)
+        {
+            ClientVM clientObj = new ClientVM();
+            // read data in here
+            return PartialView("_ClientDetails", clientObj);
         }
     }
 }
