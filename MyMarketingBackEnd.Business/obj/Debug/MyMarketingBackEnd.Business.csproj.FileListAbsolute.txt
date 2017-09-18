@@ -1,0 +1,11 @@
+C:\Users\LENOVO\Documents\Visual Studio 2012\Projects\WCFTutorials\MyMarketingBackEnd\MyMarketingBackEnd.Business\bin\Debug\MyMarketingBackEnd.Business.dll
+C:\Users\LENOVO\Documents\Visual Studio 2012\Projects\WCFTutorials\MyMarketingBackEnd\MyMarketingBackEnd.Business\bin\Debug\MyMarketingBackEnd.Business.pdb
+C:\Users\LENOVO\Documents\Visual Studio 2012\Projects\WCFTutorials\MyMarketingBackEnd\MyMarketingBackEnd.Business\obj\Debug\MyMarketingBackEnd.Business.csprojResolveAssemblyReference.cache
+C:\Users\LENOVO\Documents\Visual Studio 2012\Projects\WCFTutorials\MyMarketingBackEnd\MyMarketingBackEnd.Business\obj\Debug\MyMarketingBackEnd.Business.dll
+C:\Users\LENOVO\Documents\Visual Studio 2012\Projects\WCFTutorials\MyMarketingBackEnd\MyMarketingBackEnd.Business\obj\Debug\MyMarketingBackEnd.Business.pdb
+C:\Users\LENOVO\Documents\Visual Studio 2012\Projects\WCFTutorials\MyMarketingBackEnd\MyMarketingBackEnd.Business\bin\Debug\MyMarketingBackEnd.BusinessObjects.dll
+C:\Users\LENOVO\Documents\Visual Studio 2012\Projects\WCFTutorials\MyMarketingBackEnd\MyMarketingBackEnd.Business\bin\Debug\MyMarketingBackEnd.DataAccess.dll
+C:\Users\LENOVO\Documents\Visual Studio 2012\Projects\WCFTutorials\MyMarketingBackEnd\MyMarketingBackEnd.Business\bin\Debug\MyMarketingBackEnd.BusinessObjects.pdb
+C:\Users\LENOVO\Documents\Visual Studio 2012\Projects\WCFTutorials\MyMarketingBackEnd\MyMarketingBackEnd.Business\bin\Debug\MyMarketingBackEnd.DataAccess.pdb
+C:\Users\LENOVO\Documents\Visual Studio 2012\Projects\WCFTutorials\MyMarketingBackEnd\MyMarketingBackEnd.Business\bin\Debug\MyMarketingBackEnd.Common.dll
+C:\Users\LENOVO\Documents\Visual Studio 2012\Projects\WCFTutorials\MyMarketingBackEnd\MyMarketingBackEnd.Business\bin\Debug\MyMarketingBackEnd.Common.pdb

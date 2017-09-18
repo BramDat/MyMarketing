@@ -1,0 +1,112 @@
+﻿@model MyMarketingBackEnd.WebApp.Models.ClientVM
+@using (Html.BeginForm("SaveClient", "ClientManagement", FormMethod.Post, new { id = "formClientBasic" }))
+{
+    @Html.Hidden("currentStep", ViewData["PageStepCode"].ToString())
+    <table id="clientDetailsform" class="basicForm">
+        <tbody>
+            <tr>
+                <td>
+                    <label>First Name </label>
+                </td>
+                <td>
+                    @Html.TextBoxFor(model => model.FirstName)
+                </td>
+                <td>
+                    <label>Last Name </label>
+                </td>
+                <td>
+                    @Html.TextBoxFor(model => model.LastName)
+                </td>
+                <td>
+                    <label>Business Name</label>
+                </td>
+                <td>
+                    @Html.TextBoxFor(model => model.BusinessName)
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <label>Primary Contact Number </label>
+                </td>
+                <td>
+                    @Html.TextBoxFor(model => model.PrimaryPhoneNum)
+                </td>
+                <td>
+                    <label>Alternate Contact Number </label>
+                </td>
+                <td>
+                    @Html.TextBoxFor(model => model.AltPhoneNum)
+                </td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>
+                    <label>Business Address </label>
+                </td>
+                <td colspan="3">
+                    @Html.TextAreaFor(model => model.PrimaryAddress)
+                </td>
+                <td colspan="2"></td>
+            </tr>
+            <tr>
+                <td>
+                    <label>Primary Mail</label>
+                </td>
+                <td>
+                    @Html.TextBoxFor(model => model.PrimaryMail)
+                </td>
+                <td>
+                    <label>Facebook ID</label>
+                </td>
+                <td>
+                    @Html.TextBoxFor(model => model.FacebookId)
+                </td>
+                <td>
+                    <label>Is Active</label>
+                </td>
+                <td>
+                    @Html.CheckBoxFor(model => model.IsActive)
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    @Html.Label("UserName")
+                </td>
+                <td>@Html.TextBoxFor(model => model.UserName)</td>
+                <td>
+                    <input type="button" id="genUName" value="Generate UserName" /></td>
+                <td colspan="3"></td>
+            </tr>
+            <tr>
+                <td>
+                    @Html.Label("Password")
+                </td>
+                <td>@Html.TextBoxFor(model => model.Password)</td>
+                <td>
+                    <input type="button" id="genPswd" value="Generate Password" /></td>
+                <td colspan="3"></td>
+            </tr>
+            <tr>
+                <td colspan="5">
+                    @Html.ValidationSummary()
+                </td>
+                <td>
+                    <button type="submit" id="saveClientDtls" class="btnSubmit">SAVE & NEXT</button>
+                    <button type="button" id="cancelClientDtls" class="btnGray btnCancel">CANCEL</button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+}
+<script type="text/javascript">
+    $(document).ready(function () {
+
+        $(".btnCancel").click(function () {
+            $('#formClientBasic input[type="text"]').each(function () {
+                this.value = "";
+            });
+        });
+
+    });
+</script>

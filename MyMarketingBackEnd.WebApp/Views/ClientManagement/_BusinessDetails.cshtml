@@ -1,0 +1,75 @@
+﻿@model MyMarketingBackEnd.WebApp.Models.ClientVM
+@using (Html.BeginForm("SaveBusinessDetails", "ClientManagement", FormMethod.Post))
+{
+    @Html.Hidden("currentStep", ViewData["PageStepCode"].ToString())
+    @Html.HiddenFor(model => model.ClientId);
+    <table id="bizDetailsform" class="basicForm">
+        <thead>
+            <tr>
+                <th colspan="4" style="border-bottom: 1px solid #bbb;">
+                    <h4 style="color: #000;">Add business details for Client</h4>
+                    <p style="color: #999;">Client ID : #@Html.DisplayFor(model => model.ClientId) | Client Business Name : @Html.DisplayFor(model => model.BusinessName) | Client UserName : @Html.DisplayFor(model => model.UserName)</p>
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Select the business category</td>
+                <td>@Html.DropDownListFor(model => model.Business[0].BizCategoryId, new SelectList(Model.BusinessCategoryList, "Key", "Value"))</td>
+                <td>Business Sub Category Type</td>
+                <td>@Html.TextBoxFor(model => model.Business[0].BizSubCategoryType)</td>
+            </tr>
+            <tr>
+                <td>Description</td>
+                <td>@Html.TextAreaFor(model => model.Business[0].BizDescription)</td>
+                <td>Website</td>
+                <td>@Html.TextBoxFor(model => model.Business[0].BizWebSite)</td>
+            </tr>
+            <tr>
+                <td>Gallery Path</td>
+                <td>@Html.TextAreaFor(model => model.Business[0].BizGalleryPath, new { disabled = "disabled" })</td>
+                <td>Logo Path</td>
+                <td>@Html.TextAreaFor(model => model.Business[0].BizLogoPath, new { disabled = "disabled" })</td>
+            </tr>
+            <tr>
+                <td>Select payment period</td>
+                <td>@Html.DropDownListFor(model => model.Business[0].PayPeriodId, new SelectList(Model.PayPeriodList, "Key", "Value"))</td>
+                <td>Business Hours</td>
+                <td>Start : @Html.TextBoxFor(model => model.Business[0].BizStartHours) &nbsp|&nbsp
+                    End : @Html.TextBoxFor(model => model.Business[0].BizEndHours)
+                </td>
+            </tr>
+            <tr>
+                <td>Negotiated Final Price</td>
+                <td>@Html.TextBoxFor(model => model.Business[0].NegotiatedPrice)</td>
+                <td>Geo Location</td>
+                <td>Latitude : @Html.TextBoxFor(model => model.Business[0].GeoLatitude) &nbsp|&nbsp
+                    Longitude : @Html.TextBoxFor(model => model.Business[0].GeoLongitude)
+                </td>
+            </tr>
+            <tr>
+                <td>Business Sub-Category Native Type</td>
+                <td>@Html.TextBoxFor(model => model.Business[0].BizSubCategoryNativeType)</td>
+                <td>Premium Customer?  @Html.CheckBoxFor(model => model.Business[0].IsPremiumBiz)
+                    <br />
+                    Bulk Data Received?  @Html.CheckBoxFor(model => model.Business[0].IsBuldDataReceived)
+                </td>
+                <td>Make Contact Number Public?  @Html.CheckBoxFor(model => model.Business[0].IsPhonePublic)
+                    <br />
+                    Active? @Html.CheckBoxFor(model => model.Business[0].IsBuldDataReceived)
+                </td>
+            </tr>
+            <tr>
+                <td colspan="3">
+                    <div style="color: #ff0000;">
+                        @Html.ValidationSummary()
+                    </div>
+                </td>
+                <td>
+                    <button type="submit" id="saveClientDtls" class="btnSubmit">SAVE & NEXT</button>
+                    <button type="button" id="cancelClientDtls" class="btnGray btnCancel">CANCEL</button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+}

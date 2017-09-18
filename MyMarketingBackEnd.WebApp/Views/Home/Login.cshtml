@@ -1,0 +1,43 @@
+﻿@model MyMarketingBackEnd.BusinessObjects.User
+@{
+    ViewBag.Title = "Login";
+    Layout = "~/Views/Shared/_LoginLayout.cshtml";
+}
+
+<div style="width: 60%; float: left; margin-left: 20%; height: 60%;">
+    <fieldset style="float: left; width: 92%; height: 96%; margin: 2%; border-radius: 5px; border: 1.5px solid #ddd; color: #ddd;">
+        <legend>
+            <h2 style="color: #ccc">Ama Brahmapur - BackEnd System</h2>
+        </legend>
+
+        <div style="float: left; width: 49%; height: 100%;">
+            <img src="~/Content/Images/App_Logo.png" id="webHeader_Img" />
+        </div>
+
+        <div style="float: left; width: 49%; height: 100%; color: #bbb;">
+            @using (Html.BeginForm("SignIn", "Home", FormMethod.Post))
+            {
+                <div class="login-box animated fadeInUp">
+                    <div class="box-header">
+                        <h2>Log In</h2>
+                    </div>
+                    <label for="username">Username</label>
+                    @Html.LabelFor(model => model.UserName)
+                    <br />
+                    @Html.TextBoxFor(model => model.UserName, new { id = "username" })
+                    <br />
+                    <label for="password">Password</label>
+                    <br />
+                    @Html.PasswordFor(model => model.UserName, new { id = "password" })
+                    <br />
+                    <button type="submit">Sign In</button>
+                    <br />
+                    <a href="#">
+                        <p class="small">Forgot your password?</p>
+                    </a>
+                </div>
+            }
+        </div>
+    </fieldset>
+</div>
+

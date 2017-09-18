@@ -1,0 +1,46 @@
+﻿@model MyMarketingBackEnd.WebApp.Models.ClientVM
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<link href="~/Content/CSS/workflowBar.css" rel="stylesheet" />
+<div id="mainContent">
+    <fieldset>
+        <legend>
+            <h2>Client Management</h2>
+        </legend>
+        <div id="workflowNav">
+            @if (!String.IsNullOrEmpty(ViewData["StartStepNum"].ToString()))
+            {
+                @Html.Partial("_ClientMgmtNav", new ViewDataDictionary { { "PageStepCode", ViewData["StartStepNum"].ToString() } });
+            }
+            else
+            {
+                @Html.Partial("_ClientMgmtNav", new ViewDataDictionary { { "PageStepCode", "1" } });
+            }
+        </div>
+        <div id="workflowStep" style="box-shadow: 3px 5px 9px 5px rgba(0,0,0,0.2); border-radius: 5px; margin: 1%; float: left; width: 98%;">
+            @if (!String.IsNullOrEmpty(ViewData["StartStepNum"].ToString()))
+            {
+                switch (ViewData["StartStepNum"].ToString())
+                {
+                    case "1":
+                @Html.Partial("_ClientDetails", Model, new ViewDataDictionary { { "PageStepCode", ViewData["StartStepNum"].ToString() } });
+                                                                                                                                          break;
+                    case "2":
+
+                @Html.Partial("_BusinessDetails", Model, new ViewDataDictionary { { "PageStepCode", ViewData["StartStepNum"].ToString() } });
+                                                                                                                                            break;
+                    case "3":
+                @Html.Partial("_UploadLogo", Model, new ViewDataDictionary { { "PageStepCode", ViewData["StartStepNum"].ToString() } });
+                                                                                                                                       break;
+                    case "4":
+                @Html.Partial("_UploadToGallery", Model, new ViewDataDictionary { { "PageStepCode", ViewData["StartStepNum"].ToString() } });
+                                                                                                                                            break;
+                }
+
+            }
+        </div>
+
+    </fieldset>
+</div>

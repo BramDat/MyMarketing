@@ -1,0 +1,76 @@
+﻿@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<style>
+    #tblHomeContent a {
+        font-family: Tahoma;
+        font-size: 12px;
+        color: rgb(0,162,232);
+    }
+
+    #tblHomeContent .module {
+        font-size: 14px;
+        font-weight: bold;
+        border-bottom: 1px solid #ddd;
+        float: left;
+        width: 200px;
+        margin-bottom: 10px;
+        padding:8px;
+    }
+
+    #tblHomeContent .moduleItem {
+        width: 200px;
+        border-right: 1px solid #888;
+        padding-left: 10px;
+        border-right: 1px solid #555;
+    }
+</style>
+<div id="mainContent">
+    <table id="tblHomeContent">
+        <tbody>
+            <tr>
+                <td class="module">Client Info</td>
+                <td colspan="4"></td>
+            </tr>
+            <tr>
+                <td class="moduleItem">@Html.ActionLink("Add New Client", "Index", "ClientManagement", null, null)</td>
+                <td class="moduleItem">@Html.ActionLink("Edit Client", "Index", "ClientManagement", null, null)</td>
+                <td colspan="3"></td>
+            </tr>
+            <tr>
+                <td colspan="5">
+                    <br />
+                    <br />
+                </td>
+            </tr>
+            <tr>
+                <td class="module">Business Info</td>
+                <td colspan="4"></td>
+            </tr>
+            <tr>
+                <td class="moduleItem">@Html.ActionLink("Add New Business", "Index", "ClientManagement", null, null)</td>
+                <td class="moduleItem">@Html.ActionLink("Edit Business", "Index", "ClientManagement", null, null)</td>
+                <td colspan="3"></td>
+            </tr>
+            <tr>
+                <td colspan="5">
+                    <br />
+                    <br />
+                </td>
+            </tr>
+            <tr>
+                <td class="module">FINANCE</td>
+                <td colspan="4"></td>
+            </tr>
+            <tr>
+                <td class="moduleItem">@Html.ActionLink("Manage Client Billing", "Index", "ClientManagement", null, null)</td>
+                <td class="moduleItem">@Html.ActionLink("Manage Client Payment History", "Index", "ClientManagement", null, null)</td>
+                <td class="moduleItem">@Html.ActionLink("Manage Vendor Payments", "Index", "ClientManagement", null, null)</td>
+                <td class="moduleItem">@Html.ActionLink("Manage Staff Payments", "Index", "ClientManagement", null, null)</td>
+                <td></td>
+            </tr>
+        </tbody>
+    </table>
+</div>

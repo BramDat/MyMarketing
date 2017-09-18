@@ -1,0 +1,4 @@
+C:\Users\LENOVO\Documents\Visual Studio 2012\Projects\WCFTutorials\MyMarketingBackEnd\MyMarketingBackEnd.Common\bin\Debug\MyMarketingBackEnd.Common.dll
+C:\Users\LENOVO\Documents\Visual Studio 2012\Projects\WCFTutorials\MyMarketingBackEnd\MyMarketingBackEnd.Common\bin\Debug\MyMarketingBackEnd.Common.pdb
+C:\Users\LENOVO\Documents\Visual Studio 2012\Projects\WCFTutorials\MyMarketingBackEnd\MyMarketingBackEnd.Common\obj\Debug\MyMarketingBackEnd.Common.dll
+C:\Users\LENOVO\Documents\Visual Studio 2012\Projects\WCFTutorials\MyMarketingBackEnd\MyMarketingBackEnd.Common\obj\Debug\MyMarketingBackEnd.Common.pdb

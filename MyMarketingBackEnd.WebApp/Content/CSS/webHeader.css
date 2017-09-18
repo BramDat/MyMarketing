@@ -1,0 +1,27 @@
+﻿#webHeader {
+    border-bottom: 1px solid #ddd;
+    background-color: #666;
+}
+
+#webHeader_Container {
+}
+
+    #webHeader_Container h3 {
+        float: left;
+        width: 50%;
+        color: #fff;
+        margin-top: 2%;
+        font-size:2em;
+    }
+
+#webHeader_Img {
+    margin: 5px;
+    height: 90px;
+    width: 90px;
+    float: left;
+}
+
+.left100 {
+    float: left;
+    width: 100%;
+}

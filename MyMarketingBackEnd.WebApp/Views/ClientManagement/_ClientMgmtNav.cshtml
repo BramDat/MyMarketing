@@ -1,0 +1,74 @@
+﻿@if (ViewData["PageStepCode"].ToString() == "1")
+{
+    <div class="checkout-wrap">
+        <ul class="checkout-bar">
+            <li class="active">
+                <a href="#">Client Basic Details</a>
+            </li>
+            <li class="next">Business Details</li>
+            <li class="">Upload LOGO</li>
+            <li class="">Gallery Settings</li>
+            <li class="">Complete</li>
+        </ul>
+    </div>
+}
+else if (ViewData["PageStepCode"].ToString() == "2")
+{
+    <div class="checkout-wrap">
+        <ul class="checkout-bar">
+            <li class="previous visited">
+                <a href="#">Client Basic Details</a>
+            </li>
+            <li class="active">Business Details</li>
+            <li class="next">Upload LOGO</li>
+            <li class="">Gallery Settings</li>
+            <li class="">Complete</li>
+        </ul>
+    </div>
+}
+else if (ViewData["PageStepCode"].ToString() == "3")
+{
+    <div class="checkout-wrap">
+        <ul class="checkout-bar">
+            <li class="visited">
+                <a href="#">Client Basic Details</a>
+            </li>
+            <li class="previous visited">Business Details</li>
+            <li class="active">Upload LOGO</li>
+            <li class="">Gallery Settings</li>
+            <li class="">Complete</li>
+        </ul>
+    </div> 
+}
+else if (ViewData["PageStepCode"].ToString() == "4")
+{
+    <div class="checkout-wrap">
+        <ul class="checkout-bar">
+            <li class="visited">
+                <a href="#">Client Basic Details</a>
+            </li>
+            <li class="visited">Business Details</li>
+            <li class="previous visited">Upload LOGO</li>
+            <li class="active">Gallery Settings</li>
+            <li class="next">Complete</li>
+        </ul>
+    </div> 
+}
+else if (ViewData["PageStepCode"].ToString() == "5")
+{
+    <div class="checkout-wrap">
+        <ul class="checkout-bar">
+            <li class="visited">
+                <a href="#">Client Basic Details</a>
+            </li>
+            <li class="visited">Business Details</li>
+            <li class="visited">Upload LOGO</li>
+            <li class="previous visited">Gallery Settings</li>
+            <li class="active">Complete</li>
+        </ul>
+    </div> 
+}
+<br />
+<br />
+<br />
+<br />

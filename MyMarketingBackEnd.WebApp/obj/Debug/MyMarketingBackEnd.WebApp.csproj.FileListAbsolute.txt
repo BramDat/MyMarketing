@@ -1,0 +1,68 @@
+C:\Users\LENOVO\Documents\Visual Studio 2012\Projects\WCFTutorials\MyMarketingBackEnd\MyMarketingBackEnd.WebApp\bin\MyMarketingBackEnd.WebApp.dll
+C:\Users\LENOVO\Documents\Visual Studio 2012\Projects\WCFTutorials\MyMarketingBackEnd\MyMarketingBackEnd.WebApp\bin\MyMarketingBackEnd.WebApp.pdb
+C:\Users\LENOVO\Documents\Visual Studio 2012\Projects\WCFTutorials\MyMarketingBackEnd\MyMarketingBackEnd.WebApp\bin\Microsoft.Web.Infrastructure.dll
+C:\Users\LENOVO\Documents\Visual Studio 2012\Projects\WCFTutorials\MyMarketingBackEnd\MyMarketingBackEnd.WebApp\bin\Newtonsoft.Json.dll
+C:\Users\LENOVO\Documents\Visual Studio 2012\Projects\WCFTutorials\MyMarketingBackEnd\MyMarketingBackEnd.WebApp\bin\System.Net.Http.Formatting.dll
+C:\Users\LENOVO\Documents\Visual Studio 2012\Projects\WCFTutorials\MyMarketingBackEnd\MyMarketingBackEnd.WebApp\bin\System.Web.Helpers.dll
+C:\Users\LENOVO\Documents\Visual Studio 2012\Projects\WCFTutorials\MyMarketingBackEnd\MyMarketingBackEnd.WebApp\bin\System.Web.Http.dll
+C:\Users\LENOVO\Documents\Visual Studio 2012\Projects\WCFTutorials\MyMarketingBackEnd\MyMarketingBackEnd.WebApp\bin\System.Web.Http.WebHost.dll
+C:\Users\LENOVO\Documents\Visual Studio 2012\Projects\WCFTutorials\MyMarketingBackEnd\MyMarketingBackEnd.WebApp\bin\System.Web.Mvc.dll
+C:\Users\LENOVO\Documents\Visual Studio 2012\Projects\WCFTutorials\MyMarketingBackEnd\MyMarketingBackEnd.WebApp\bin\System.Web.Razor.dll
+C:\Users\LENOVO\Documents\Visual Studio 2012\Projects\WCFTutorials\MyMarketingBackEnd\MyMarketingBackEnd.WebApp\bin\System.Web.WebPages.Deployment.dll
+C:\Users\LENOVO\Documents\Visual Studio 2012\Projects\WCFTutorials\MyMarketingBackEnd\MyMarketingBackEnd.WebApp\bin\System.Web.WebPages.dll
+C:\Users\LENOVO\Documents\Visual Studio 2012\Projects\WCFTutorials\MyMarketingBackEnd\MyMarketingBackEnd.WebApp\bin\System.Web.WebPages.Razor.dll
+C:\Users\LENOVO\Documents\Visual Studio 2012\Projects\WCFTutorials\MyMarketingBackEnd\MyMarketingBackEnd.WebApp\bin\Newtonsoft.Json.xml
+C:\Users\LENOVO\Documents\Visual Studio 2012\Projects\WCFTutorials\MyMarketingBackEnd\MyMarketingBackEnd.WebApp\bin\System.Net.Http.Formatting.xml
+C:\Users\LENOVO\Documents\Visual Studio 2012\Projects\WCFTutorials\MyMarketingBackEnd\MyMarketingBackEnd.WebApp\bin\System.Web.Helpers.xml
+C:\Users\LENOVO\Documents\Visual Studio 2012\Projects\WCFTutorials\MyMarketingBackEnd\MyMarketingBackEnd.WebApp\bin\System.Web.Http.xml
+C:\Users\LENOVO\Documents\Visual Studio 2012\Projects\WCFTutorials\MyMarketingBackEnd\MyMarketingBackEnd.WebApp\bin\System.Web.Http.WebHost.xml
+C:\Users\LENOVO\Documents\Visual Studio 2012\Projects\WCFTutorials\MyMarketingBackEnd\MyMarketingBackEnd.WebApp\bin\System.Web.Mvc.xml
+C:\Users\LENOVO\Documents\Visual Studio 2012\Projects\WCFTutorials\MyMarketingBackEnd\MyMarketingBackEnd.WebApp\bin\System.Web.Razor.xml
+C:\Users\LENOVO\Documents\Visual Studio 2012\Projects\WCFTutorials\MyMarketingBackEnd\MyMarketingBackEnd.WebApp\bin\System.Web.WebPages.xml
+C:\Users\LENOVO\Documents\Visual Studio 2012\Projects\WCFTutorials\MyMarketingBackEnd\MyMarketingBackEnd.WebApp\bin\System.Web.WebPages.Deployment.xml
+C:\Users\LENOVO\Documents\Visual Studio 2012\Projects\WCFTutorials\MyMarketingBackEnd\MyMarketingBackEnd.WebApp\bin\System.Web.WebPages.Razor.xml
+C:\Users\LENOVO\Documents\Visual Studio 2012\Projects\WCFTutorials\MyMarketingBackEnd\MyMarketingBackEnd.WebApp\obj\Debug\MyMarketingBackEnd.WebApp.csprojResolveAssemblyReference.cache
+C:\Users\LENOVO\Documents\Visual Studio 2012\Projects\WCFTutorials\MyMarketingBackEnd\MyMarketingBackEnd.WebApp\obj\Debug\MyMarketingBackEnd.WebApp.dll
+C:\Users\LENOVO\Documents\Visual Studio 2012\Projects\WCFTutorials\MyMarketingBackEnd\MyMarketingBackEnd.WebApp\obj\Debug\MyMarketingBackEnd.WebApp.pdb
+C:\Users\LENOVO\Documents\Visual Studio 2012\Projects\WCFTutorials\MyMarketingBackEnd\MyMarketingBackEnd.WebApp\bin\MyMarketingBackEnd.BusinessObjects.dll
+C:\Users\LENOVO\Documents\Visual Studio 2012\Projects\WCFTutorials\MyMarketingBackEnd\MyMarketingBackEnd.WebApp\bin\MyMarketingBackEnd.BusinessObjects.pdb
+C:\Users\LENOVO\Documents\Visual Studio 2012\Projects\WCFTutorials\MyMarketingBackEnd\MyMarketingBackEnd.WebApp\bin\MyMarketingBackEnd.Business.dll
+C:\Users\LENOVO\Documents\Visual Studio 2012\Projects\WCFTutorials\MyMarketingBackEnd\MyMarketingBackEnd.WebApp\bin\MyMarketingBackEnd.DataAccess.dll
+C:\Users\LENOVO\Documents\Visual Studio 2012\Projects\WCFTutorials\MyMarketingBackEnd\MyMarketingBackEnd.WebApp\bin\MyMarketingBackEnd.Business.pdb
+C:\Users\LENOVO\Documents\Visual Studio 2012\Projects\WCFTutorials\MyMarketingBackEnd\MyMarketingBackEnd.WebApp\bin\MyMarketingBackEnd.DataAccess.pdb
+C:\Users\LENOVO\Documents\Visual Studio 2012\Projects\WCFTutorials\MyMarketingBackEnd\MyMarketingBackEnd.WebApp\bin\MyMarketingBackEnd.Common.dll
+C:\Users\LENOVO\Documents\Visual Studio 2012\Projects\WCFTutorials\MyMarketingBackEnd\MyMarketingBackEnd.WebApp\bin\MyMarketingBackEnd.Common.pdb
+D:\BD\SameerProject\PROJECT_CODE_BASE\MyMarketingBackEnd\MyMarketingBackEnd.WebApp\bin\MyMarketingBackEnd.WebApp.dll
+D:\BD\SameerProject\PROJECT_CODE_BASE\MyMarketingBackEnd\MyMarketingBackEnd.WebApp\bin\MyMarketingBackEnd.WebApp.pdb
+D:\BD\SameerProject\PROJECT_CODE_BASE\MyMarketingBackEnd\MyMarketingBackEnd.WebApp\bin\Microsoft.Web.Infrastructure.dll
+D:\BD\SameerProject\PROJECT_CODE_BASE\MyMarketingBackEnd\MyMarketingBackEnd.WebApp\bin\MyMarketingBackEnd.Business.dll
+D:\BD\SameerProject\PROJECT_CODE_BASE\MyMarketingBackEnd\MyMarketingBackEnd.WebApp\bin\MyMarketingBackEnd.BusinessObjects.dll
+D:\BD\SameerProject\PROJECT_CODE_BASE\MyMarketingBackEnd\MyMarketingBackEnd.WebApp\bin\Newtonsoft.Json.dll
+D:\BD\SameerProject\PROJECT_CODE_BASE\MyMarketingBackEnd\MyMarketingBackEnd.WebApp\bin\System.Net.Http.Formatting.dll
+D:\BD\SameerProject\PROJECT_CODE_BASE\MyMarketingBackEnd\MyMarketingBackEnd.WebApp\bin\System.Web.Helpers.dll
+D:\BD\SameerProject\PROJECT_CODE_BASE\MyMarketingBackEnd\MyMarketingBackEnd.WebApp\bin\System.Web.Http.dll
+D:\BD\SameerProject\PROJECT_CODE_BASE\MyMarketingBackEnd\MyMarketingBackEnd.WebApp\bin\System.Web.Http.WebHost.dll
+D:\BD\SameerProject\PROJECT_CODE_BASE\MyMarketingBackEnd\MyMarketingBackEnd.WebApp\bin\System.Web.Mvc.dll
+D:\BD\SameerProject\PROJECT_CODE_BASE\MyMarketingBackEnd\MyMarketingBackEnd.WebApp\bin\System.Web.Razor.dll
+D:\BD\SameerProject\PROJECT_CODE_BASE\MyMarketingBackEnd\MyMarketingBackEnd.WebApp\bin\System.Web.WebPages.Deployment.dll
+D:\BD\SameerProject\PROJECT_CODE_BASE\MyMarketingBackEnd\MyMarketingBackEnd.WebApp\bin\System.Web.WebPages.dll
+D:\BD\SameerProject\PROJECT_CODE_BASE\MyMarketingBackEnd\MyMarketingBackEnd.WebApp\bin\System.Web.WebPages.Razor.dll
+D:\BD\SameerProject\PROJECT_CODE_BASE\MyMarketingBackEnd\MyMarketingBackEnd.WebApp\bin\MyMarketingBackEnd.DataAccess.dll
+D:\BD\SameerProject\PROJECT_CODE_BASE\MyMarketingBackEnd\MyMarketingBackEnd.WebApp\bin\MyMarketingBackEnd.Common.dll
+D:\BD\SameerProject\PROJECT_CODE_BASE\MyMarketingBackEnd\MyMarketingBackEnd.WebApp\bin\MyMarketingBackEnd.BusinessObjects.pdb
+D:\BD\SameerProject\PROJECT_CODE_BASE\MyMarketingBackEnd\MyMarketingBackEnd.WebApp\bin\MyMarketingBackEnd.Business.pdb
+D:\BD\SameerProject\PROJECT_CODE_BASE\MyMarketingBackEnd\MyMarketingBackEnd.WebApp\bin\Newtonsoft.Json.xml
+D:\BD\SameerProject\PROJECT_CODE_BASE\MyMarketingBackEnd\MyMarketingBackEnd.WebApp\bin\System.Net.Http.Formatting.xml
+D:\BD\SameerProject\PROJECT_CODE_BASE\MyMarketingBackEnd\MyMarketingBackEnd.WebApp\bin\System.Web.Helpers.xml
+D:\BD\SameerProject\PROJECT_CODE_BASE\MyMarketingBackEnd\MyMarketingBackEnd.WebApp\bin\System.Web.Http.xml
+D:\BD\SameerProject\PROJECT_CODE_BASE\MyMarketingBackEnd\MyMarketingBackEnd.WebApp\bin\System.Web.Http.WebHost.xml
+D:\BD\SameerProject\PROJECT_CODE_BASE\MyMarketingBackEnd\MyMarketingBackEnd.WebApp\bin\System.Web.Mvc.xml
+D:\BD\SameerProject\PROJECT_CODE_BASE\MyMarketingBackEnd\MyMarketingBackEnd.WebApp\bin\System.Web.Razor.xml
+D:\BD\SameerProject\PROJECT_CODE_BASE\MyMarketingBackEnd\MyMarketingBackEnd.WebApp\bin\System.Web.WebPages.xml
+D:\BD\SameerProject\PROJECT_CODE_BASE\MyMarketingBackEnd\MyMarketingBackEnd.WebApp\bin\System.Web.WebPages.Deployment.xml
+D:\BD\SameerProject\PROJECT_CODE_BASE\MyMarketingBackEnd\MyMarketingBackEnd.WebApp\bin\System.Web.WebPages.Razor.xml
+D:\BD\SameerProject\PROJECT_CODE_BASE\MyMarketingBackEnd\MyMarketingBackEnd.WebApp\bin\MyMarketingBackEnd.DataAccess.pdb
+D:\BD\SameerProject\PROJECT_CODE_BASE\MyMarketingBackEnd\MyMarketingBackEnd.WebApp\bin\MyMarketingBackEnd.Common.pdb
+D:\BD\SameerProject\PROJECT_CODE_BASE\MyMarketingBackEnd\MyMarketingBackEnd.WebApp\obj\Debug\MyMarketingBackEnd.WebApp.csprojResolveAssemblyReference.cache
+D:\BD\SameerProject\PROJECT_CODE_BASE\MyMarketingBackEnd\MyMarketingBackEnd.WebApp\obj\Debug\MyMarketingBackEnd.WebApp.dll
+D:\BD\SameerProject\PROJECT_CODE_BASE\MyMarketingBackEnd\MyMarketingBackEnd.WebApp\obj\Debug\MyMarketingBackEnd.WebApp.pdb

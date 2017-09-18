@@ -1,0 +1,45 @@
+﻿<!DOCTYPE html>
+
+<html lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=9">
+    <meta name="viewport" content="width=device-width" />
+    <script
+        src="https://code.jquery.com/jquery-2.2.4.min.js"
+        integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44="
+        crossorigin="anonymous"></script>
+    <link href="~/Content/CSS/webHeader.css" rel="stylesheet" />
+    <link href="~/Content/CSS/style.css" rel="stylesheet" />
+    <title>Ama Brahmapur - BackEnd System</title>
+</head>
+<body>
+    @Html.Partial("_Header")
+    <div id="content">
+        <div id="leftNav">
+            <ul>
+                <li>@Html.ActionLink("Home", "Index", "Home", null, null)</li>
+                <li>@Html.ActionLink("Client Management", "Index", "ClientManagement", null, null)</li>
+                <li>@Html.ActionLink("Client Business Management", "Index", "ClientManagement", null, null)</li>
+                <li>@Html.ActionLink("Billing", "Index", "Home", null, null)</li>
+                <li>@Html.ActionLink("Client Payments", "Index", "Home", null, null)</li>
+                <li>@Html.ActionLink("Vendor Payments", "Index", "Home", null, null)</li>
+                <li>@Html.ActionLink("Staff Payments", "Index", "Home", null, null)</li>
+                <li>@Html.ActionLink("Contact", "Index", "Home", null, null)</li>
+                <li>@Html.ActionLink("About", "Index", "Home", null, null)</li>
+            </ul>
+        </div>
+        @{
+            try
+            {
+            @RenderBody();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+    </div>
+    @Html.Partial("_Footer")
+</body>
+</html>

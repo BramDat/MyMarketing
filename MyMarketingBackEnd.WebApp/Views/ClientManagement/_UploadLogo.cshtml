@@ -1,0 +1,30 @@
+﻿<h2>Upload file</h2>
+@using (Html.BeginForm("UploadLogo", "ClientManagement", FormMethod.Post,
+                         new { enctype = "multipart/form-data" }))
+{   
+    @Html.Hidden("currentStep", ViewData["PageStepCode"].ToString())
+    <div style="float: left; margin-bottom: 10px; width: 99%;">
+        <div id="fileUploadDivBtn">
+            Select File
+        <input type="file" name="fileBase" id="logo" class="hideBtn" /><br>
+        </div>
+        <div id="fileDetails" style="float: left; width: 99%;"></div>
+    </div>
+    <br>   
+    <input type="submit" value="Upload LOGO" style="padding: 5px 10px; background-color: rgb(0,145,206); color: #fff; border: 1px solid rgb(0,145,206)" />   
+    <br>
+    <br>
+    @Html.ValidationSummary()   
+}
+<script>
+    $(document).ready(function () {
+        $("#logo").change(function () {
+            //submit the form here
+            var filePath = $("#logo").val();
+            var filePathParts = filePath.split("\\");
+            var fileName = filePathParts[filePathParts.length - 1];
+            $("#fileDetails").html("<p>Selected File : <span style='color:red;'>" + fileName + "</span></p>");
+            
+        });
+    });
+</script>
