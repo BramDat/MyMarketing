@@ -5,6 +5,10 @@
     {
         Html.Hidden("currentStep", ViewData["StartStepNum"].ToString());
     }
+    if (ViewData["LoadMode"] != null)
+    {
+        Html.Hidden("LoadMode", ViewData["LoadMode"].ToString());
+    }
     <table id="clientDetailsform" class="basicForm">
         <tbody>
             <tr>
@@ -77,7 +81,7 @@
                     @Html.Label("UserName")
                 </td>
                 <td>
-                    @if (ViewBag.Mode != null && ViewBag.Mode == TransactionMode.Create)
+                    @if (ViewData["LoadMode"] != null && (TransactionMode)ViewData["LoadMode"] == TransactionMode.Create)
                     {
                         @Html.TextBoxFor(model => model.UserName)
                     }
@@ -86,15 +90,23 @@
                         @Html.TextBoxFor(model => model.UserName, new { disabled = "disabled" })
                     }
                 </td>
-                <td>
-                    @if (ViewBag.Mode != null && ViewBag.Mode == TransactionMode.Create)
-                    {
+                @if (ViewData["LoadMode"] != null && (TransactionMode)ViewData["LoadMode"] == TransactionMode.Create)
+                {
+                    <td>
+
                         <input type="button" id="genUName" value="Generate UserName" />
-                    }
-                </td>
-                <td colspan="3"></td>
+                    </td>
+                }
+                else
+                {
+                    <td>
+                        @Html.Label("Created Time : ")
+                    </td>
+                    <td style="font-size: 11px; color: #000;">@Html.DisplayFor(model => model.CreatedDate)</td>
+                }
+                <td colspan="2"></td>
             </tr>
-            @if (ViewBag.Mode != null && ViewBag.Mode == TransactionMode.Create)
+            @if (ViewData["LoadMode"] != null && (TransactionMode)ViewData["LoadMode"] == TransactionMode.Create)
             {
                 <tr>
                     <td>
@@ -102,7 +114,8 @@
                     </td>
                     <td>@Html.TextBoxFor(model => model.Password)</td>
                     <td>
-                        <input type="button" id="genPswd" value="Generate Password" /></td>
+                        <input type="button" id="genPswd" value="Generate Password" />
+                    </td>
                     <td colspan="3"></td>
                 </tr>
             }

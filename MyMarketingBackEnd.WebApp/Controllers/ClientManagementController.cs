@@ -24,7 +24,7 @@ namespace MyMarketingBackEnd.WebApp.Controllers
         public ActionResult Index()
         {
             ViewData["StartStepNum"] = WORKFLOW_START_NUM;
-            ViewBag.Mode = TransactionMode.Create;
+            ViewData["LoadMode"] = TransactionMode.Create;
             ClientVM clientObject = new ClientVM();
             return View(clientObject);
         }
@@ -32,23 +32,54 @@ namespace MyMarketingBackEnd.WebApp.Controllers
 
         [HttpPost]
         [ActionName("SaveClient")]
-        public ActionResult SaveClientDetails(ClientVM clientObj, string currentStep)
+        public ActionResult SaveClientDetails(ClientVM clientObj, string currentStep, string loadMode)
         {
             if (ModelState.IsValid)
             {
-                try
+                if ((TransactionMode)Enum.Parse(typeof(TransactionMode), loadMode) == TransactionMode.Create)
                 {
-                    if (ClientBAObject.CreateClient(clientObj))
-                        return GetBusinessDetails(clientObj, (Convert.ToInt32(currentStep) + 1).ToString());
-                    else
-                        throw new Exception("Some error occurred");
+                    try
+                    {
+                        if (ClientBAObject.CreateClient(clientObj))
+                            return GetBusinessDetails(clientObj, (Convert.ToInt32(currentStep) + 1).ToString());
+                        else
+                            throw new Exception("Some error occurred");
+                    }
+                    catch (Exception ex)
+                    {
+                        ModelState.AddModelError("Error", ex.Message);
+                        ModelState.AddModelError("More Details", ex);
+                        ViewData["StartStepNum"] = currentStep;
+                        return View("Index");
+                    }
                 }
-                catch (Exception ex)
+                else if ((TransactionMode)Enum.Parse(typeof(TransactionMode), loadMode) == TransactionMode.Update)
                 {
-                    ModelState.AddModelError("Error", ex.Message);
-                    ModelState.AddModelError("More Details", ex);
+                    try
+                    {
+                        if (ClientBAObject.CreateClient(clientObj))
+                        {
+                            TempData["EditClientStatus"] = DBTransactionStatus.Success;
+                            return RedirectToAction("ClientList");
+                        }
+                        else
+                            throw new Exception("Some error occurred");
+                    }
+                    catch (Exception ex)
+                    {
+                        ModelState.AddModelError("Error", ex.Message);
+                        ModelState.AddModelError("More Details", ex);
+                        TempData["EditClientStatus"] = DBTransactionStatus.Failure; // For Passing the message
+                        TempData["ModelState"] = ViewData.ModelState;
+                        TempData["ModelStateMetaData"] = ViewData.ModelMetadata;
+                        return RedirectToAction("ClientList");
+                    }
+                }
+                else
+                {
+                    ModelState.AddModelError("Error", "Some error happened. Please try again later. If the problem still persists, please contact the WebAdmin.");
                     ViewData["StartStepNum"] = currentStep;
-                    return View("Index");
+                    return RedirectToAction("Index");
                 }
             }
             else
@@ -155,17 +186,21 @@ namespace MyMarketingBackEnd.WebApp.Controllers
         public ActionResult GetClientList()
         {
             Dictionary<int, string> ClientList = ClientBAObject.GetClientList();
+            if (TempData["EditClientStatus"] != null)
+            {
+                ViewData["EditClientStatus"] = TempData["EditClientStatus"];
+            }
             return View("IndexListClients", ClientList);
         }
 
         public PartialViewResult EdiClient(string id)
         {
             ClientVM clientObj = new ClientVM();
-            
+
             // read data in here
             clientObj = ViewModelManager.ConvertClientToClientVM(ClientBAObject.GetClientDetails(Convert.ToInt32(id)));
 
-            ViewBag.Mode = TransactionMode.Update;
+            ViewData["LoadMode"] = TransactionMode.Update;
             return PartialView("_ClientDetails", clientObj);
         }
     }

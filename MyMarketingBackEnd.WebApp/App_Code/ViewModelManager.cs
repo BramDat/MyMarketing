@@ -10,10 +10,10 @@ namespace MyMarketingBackEnd.WebApp.App_Code
 {
     public class ViewModelManager
     {
-        public static ClientVM ConvertClientToClientVM(Client clientObj)
+        public static ClientVM ConvertClientToClientVM(ClientAuth clientObj)
         {
             ClientVM clientVMObj = new ClientVM();
-            Mapper.CreateMap<Client, ClientVM>();
+            Mapper.CreateMap<ClientAuth, ClientVM>();
             clientVMObj = Mapper.Map<ClientVM>(clientObj);
             return clientVMObj;
         }

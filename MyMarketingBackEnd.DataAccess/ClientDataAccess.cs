@@ -247,6 +247,7 @@ namespace MyMarketingBackEnd.DataAccess
                             obj.FacebookId = Convert.ToString(dr["FacebookId"]);
                             obj.CreatedDate = Convert.ToDateTime(dr["CreatedDate"]);
                             obj.IsActive = Convert.ToBoolean(dr["IsActive"]);
+                            obj.UserName = Convert.ToString(dr["ClientUserName"]);
                         }
                     }
 

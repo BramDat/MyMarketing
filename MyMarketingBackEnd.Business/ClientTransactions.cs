@@ -86,7 +86,7 @@ namespace MyMarketingBackEnd.Business
         {
             ClientAuth clientObj = new ClientAuth();
 
-            StringBuilder sb = new StringBuilder("SELECT * FROM CLIENT WHERE CLIENTID = @ClientId");
+            StringBuilder sb = new StringBuilder("SELECT CL.*,CLAU.* FROM CLIENT CL JOIN CLIENTAUTHENTICATION CLAU ON CL.CLIENTID=CLAU.CLIENTID WHERE CL.CLIENTID = @ClientId");
 
             if (ClientDA.GetClientDetails(clientId, sb.ToString(), clientObj))
                 return clientObj;

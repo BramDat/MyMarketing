@@ -14,7 +14,9 @@ namespace MyMarketingBackEnd.WebApp.Utility
 
         public static string GeneratePassword()
         {
-            return "";
+            Guid guidForPswrd = new Guid();
+            string password = guidForPswrd.ToString().Split('-')[0];
+            return password;
         }
     }
 
@@ -22,5 +24,11 @@ namespace MyMarketingBackEnd.WebApp.Utility
     {
         Create,
         Update
+    }
+
+    public enum DBTransactionStatus
+    {
+        Success,
+        Failure
     }
 }
