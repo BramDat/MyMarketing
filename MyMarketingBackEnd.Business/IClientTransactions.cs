@@ -16,5 +16,8 @@ namespace MyMarketingBackEnd.Business
         bool CreateClientAuthDetails(ClientAuth clientAuthObj);
 
         bool UpdateClient(Client clientObj);
+
+        Client GetClientDetails(int clientId);
+
     }
 }

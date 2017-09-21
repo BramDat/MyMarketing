@@ -81,5 +81,17 @@ namespace MyMarketingBackEnd.Business
 
             return retFlag;
         }
+
+        public Client GetClientDetails(int clientId)
+        {
+            Client clientObj = new Client();
+            
+            StringBuilder sb = new StringBuilder("SELECT * FROM CLIENT WHERE CLIENTID = @ClientId");
+
+            if (ClientDA.GetClientDetails(clientId, sb.ToString(), clientObj))
+                return clientObj;
+            else
+                return null;
+        }
     }
 }

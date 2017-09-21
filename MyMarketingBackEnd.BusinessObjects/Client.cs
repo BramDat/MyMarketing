@@ -28,9 +28,9 @@ namespace MyMarketingBackEnd.BusinessObjects
         public string PrimaryAddress { get; set; }
 
         [Required(ErrorMessage = "Primary Phone number is Mandatory Field")]
-        public decimal PrimaryPhoneNum { get; set; }
+        public long PrimaryPhoneNum { get; set; }
 
-        public decimal AltPhoneNum { get; set; }
+        public long AltPhoneNum { get; set; }
 
         [Required(ErrorMessage = "Primary eMail Address is Mandatory Field")]
         public string PrimaryMail { get; set; }

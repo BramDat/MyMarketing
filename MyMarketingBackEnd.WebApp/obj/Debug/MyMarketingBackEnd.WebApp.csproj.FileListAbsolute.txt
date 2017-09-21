@@ -66,3 +66,5 @@ D:\BD\SameerProject\PROJECT_CODE_BASE\MyMarketingBackEnd\MyMarketingBackEnd.WebA
 D:\BD\SameerProject\PROJECT_CODE_BASE\MyMarketingBackEnd\MyMarketingBackEnd.WebApp\obj\Debug\MyMarketingBackEnd.WebApp.csprojResolveAssemblyReference.cache
 D:\BD\SameerProject\PROJECT_CODE_BASE\MyMarketingBackEnd\MyMarketingBackEnd.WebApp\obj\Debug\MyMarketingBackEnd.WebApp.dll
 D:\BD\SameerProject\PROJECT_CODE_BASE\MyMarketingBackEnd\MyMarketingBackEnd.WebApp\obj\Debug\MyMarketingBackEnd.WebApp.pdb
+D:\BD\SameerProject\PROJECT_CODE_BASE\MyMarketingBackEnd\MyMarketingBackEnd.WebApp\bin\AutoMapper.dll
+D:\BD\SameerProject\PROJECT_CODE_BASE\MyMarketingBackEnd\MyMarketingBackEnd.WebApp\bin\AutoMapper.xml

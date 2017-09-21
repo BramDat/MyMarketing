@@ -161,7 +161,10 @@ namespace MyMarketingBackEnd.WebApp.Controllers
         public PartialViewResult EdiClient(string id)
         {
             ClientVM clientObj = new ClientVM();
+            
             // read data in here
+            clientObj = ViewModelManager.ConvertClientToClientVM(ClientBAObject.GetClientDetails(Convert.ToInt32(id)));
+            
             return PartialView("_ClientDetails", clientObj);
         }
     }

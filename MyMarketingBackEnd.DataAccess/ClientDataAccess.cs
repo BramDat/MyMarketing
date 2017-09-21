@@ -217,5 +217,46 @@ namespace MyMarketingBackEnd.DataAccess
                 throw ex;
             }
         }
+
+        public bool GetClientDetails(int clientId, string selectQuery, Client obj)
+        {
+            if (obj == null)
+                obj = new Client();
+            try
+            {
+                using (SqlConnection con = new SqlConnection(ConnectionStr))
+                {
+                    con.Open();
+                    SqlCommand cmd = new SqlCommand(selectQuery, con);
+                    cmd.Parameters.Add(new SqlParameter() { ParameterName = "@ClientId", SqlDbType = SqlDbType.Int, Value = clientId });
+
+                    SqlDataReader dr = cmd.ExecuteReader();
+
+                    if (dr.HasRows)
+                    {
+                        while (dr.Read())
+                        {
+                            obj.ClientId = Convert.ToInt32(dr["ClientId"]);
+                            obj.FirstName = Convert.ToString(dr["ClientFirstName"]);
+                            obj.LastName = Convert.ToString(dr["ClientLastName"]);
+                            obj.BusinessName = Convert.ToString(dr["BusinessName"]);
+                            obj.PrimaryAddress = Convert.ToString(dr["ClientPrimaryAddress"]);
+                            obj.PrimaryPhoneNum = Convert.ToInt64(dr["PrimaryContactNumber"]);
+                            obj.AltPhoneNum = Convert.ToInt64(dr["AlternateContactNumber"]);
+                            obj.PrimaryMail = Convert.ToString(dr["PrimaryMailId"]);
+                            obj.FacebookId = Convert.ToString(dr["FacebookId"]);
+                            obj.CreatedDate = Convert.ToDateTime(dr["CreatedDate"]);
+                            obj.IsActive = Convert.ToBoolean(dr["IsActive"]);
+                        }
+                    }
+
+                    return true;
+                }
+            }
+            catch (Exception ex)
+            {
+                return false;
+            }
+        }
     }
 }
