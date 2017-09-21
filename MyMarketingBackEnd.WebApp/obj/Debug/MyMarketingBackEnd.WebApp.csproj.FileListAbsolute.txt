@@ -34,6 +34,7 @@ C:\Users\LENOVO\Documents\Visual Studio 2012\Projects\WCFTutorials\MyMarketingBa
 C:\Users\LENOVO\Documents\Visual Studio 2012\Projects\WCFTutorials\MyMarketingBackEnd\MyMarketingBackEnd.WebApp\bin\MyMarketingBackEnd.Common.pdb
 D:\BD\SameerProject\PROJECT_CODE_BASE\MyMarketingBackEnd\MyMarketingBackEnd.WebApp\bin\MyMarketingBackEnd.WebApp.dll
 D:\BD\SameerProject\PROJECT_CODE_BASE\MyMarketingBackEnd\MyMarketingBackEnd.WebApp\bin\MyMarketingBackEnd.WebApp.pdb
+D:\BD\SameerProject\PROJECT_CODE_BASE\MyMarketingBackEnd\MyMarketingBackEnd.WebApp\bin\AutoMapper.dll
 D:\BD\SameerProject\PROJECT_CODE_BASE\MyMarketingBackEnd\MyMarketingBackEnd.WebApp\bin\Microsoft.Web.Infrastructure.dll
 D:\BD\SameerProject\PROJECT_CODE_BASE\MyMarketingBackEnd\MyMarketingBackEnd.WebApp\bin\MyMarketingBackEnd.Business.dll
 D:\BD\SameerProject\PROJECT_CODE_BASE\MyMarketingBackEnd\MyMarketingBackEnd.WebApp\bin\MyMarketingBackEnd.BusinessObjects.dll
@@ -51,6 +52,7 @@ D:\BD\SameerProject\PROJECT_CODE_BASE\MyMarketingBackEnd\MyMarketingBackEnd.WebA
 D:\BD\SameerProject\PROJECT_CODE_BASE\MyMarketingBackEnd\MyMarketingBackEnd.WebApp\bin\MyMarketingBackEnd.Common.dll
 D:\BD\SameerProject\PROJECT_CODE_BASE\MyMarketingBackEnd\MyMarketingBackEnd.WebApp\bin\MyMarketingBackEnd.BusinessObjects.pdb
 D:\BD\SameerProject\PROJECT_CODE_BASE\MyMarketingBackEnd\MyMarketingBackEnd.WebApp\bin\MyMarketingBackEnd.Business.pdb
+D:\BD\SameerProject\PROJECT_CODE_BASE\MyMarketingBackEnd\MyMarketingBackEnd.WebApp\bin\AutoMapper.xml
 D:\BD\SameerProject\PROJECT_CODE_BASE\MyMarketingBackEnd\MyMarketingBackEnd.WebApp\bin\Newtonsoft.Json.xml
 D:\BD\SameerProject\PROJECT_CODE_BASE\MyMarketingBackEnd\MyMarketingBackEnd.WebApp\bin\System.Net.Http.Formatting.xml
 D:\BD\SameerProject\PROJECT_CODE_BASE\MyMarketingBackEnd\MyMarketingBackEnd.WebApp\bin\System.Web.Helpers.xml
@@ -66,5 +68,3 @@ D:\BD\SameerProject\PROJECT_CODE_BASE\MyMarketingBackEnd\MyMarketingBackEnd.WebA
 D:\BD\SameerProject\PROJECT_CODE_BASE\MyMarketingBackEnd\MyMarketingBackEnd.WebApp\obj\Debug\MyMarketingBackEnd.WebApp.csprojResolveAssemblyReference.cache
 D:\BD\SameerProject\PROJECT_CODE_BASE\MyMarketingBackEnd\MyMarketingBackEnd.WebApp\obj\Debug\MyMarketingBackEnd.WebApp.dll
 D:\BD\SameerProject\PROJECT_CODE_BASE\MyMarketingBackEnd\MyMarketingBackEnd.WebApp\obj\Debug\MyMarketingBackEnd.WebApp.pdb
-D:\BD\SameerProject\PROJECT_CODE_BASE\MyMarketingBackEnd\MyMarketingBackEnd.WebApp\bin\AutoMapper.dll
-D:\BD\SameerProject\PROJECT_CODE_BASE\MyMarketingBackEnd\MyMarketingBackEnd.WebApp\bin\AutoMapper.xml

@@ -1,7 +1,6 @@
 ﻿@model MyMarketingBackEnd.WebApp.Models.ClientVM
 @using (Html.BeginForm("SaveClient", "ClientManagement", FormMethod.Post, new { id = "formClientBasic" }))
 {
-   
     if (ViewData["StartStepNum"] != null)
     {
         Html.Hidden("currentStep", ViewData["StartStepNum"].ToString());
@@ -77,20 +76,36 @@
                 <td>
                     @Html.Label("UserName")
                 </td>
-                <td>@Html.TextBoxFor(model => model.UserName)</td>
                 <td>
-                    <input type="button" id="genUName" value="Generate UserName" /></td>
-                <td colspan="3"></td>
-            </tr>
-            <tr>
-                <td>
-                    @Html.Label("Password")
+                    @if (ViewBag.Mode != null && ViewBag.Mode == TransactionMode.Create)
+                    {
+                        @Html.TextBoxFor(model => model.UserName)
+                    }
+                    else
+                    {
+                        @Html.TextBoxFor(model => model.UserName, new { disabled = "disabled" })
+                    }
                 </td>
-                <td>@Html.TextBoxFor(model => model.Password)</td>
                 <td>
-                    <input type="button" id="genPswd" value="Generate Password" /></td>
+                    @if (ViewBag.Mode != null && ViewBag.Mode == TransactionMode.Create)
+                    {
+                        <input type="button" id="genUName" value="Generate UserName" />
+                    }
+                </td>
                 <td colspan="3"></td>
             </tr>
+            @if (ViewBag.Mode != null && ViewBag.Mode == TransactionMode.Create)
+            {
+                <tr>
+                    <td>
+                        @Html.Label("Password")
+                    </td>
+                    <td>@Html.TextBoxFor(model => model.Password)</td>
+                    <td>
+                        <input type="button" id="genPswd" value="Generate Password" /></td>
+                    <td colspan="3"></td>
+                </tr>
+            }
             <tr>
                 <td colspan="5">
                     @Html.ValidationSummary()

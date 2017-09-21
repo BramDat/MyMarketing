@@ -17,7 +17,8 @@ namespace MyMarketingBackEnd.Business
 
         bool UpdateClient(Client clientObj);
 
-        Client GetClientDetails(int clientId);
+        ClientAuth GetClientDetails(int clientId);
 
+        Dictionary<int, string> GetClientList();
     }
 }

@@ -2,6 +2,7 @@
 using MyMarketingBackEnd.BusinessObjects;
 using MyMarketingBackEnd.WebApp.App_Code;
 using MyMarketingBackEnd.WebApp.Models;
+using MyMarketingBackEnd.WebApp.Utility;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
@@ -23,6 +24,7 @@ namespace MyMarketingBackEnd.WebApp.Controllers
         public ActionResult Index()
         {
             ViewData["StartStepNum"] = WORKFLOW_START_NUM;
+            ViewBag.Mode = TransactionMode.Create;
             ClientVM clientObject = new ClientVM();
             return View(clientObject);
         }
@@ -152,9 +154,7 @@ namespace MyMarketingBackEnd.WebApp.Controllers
         [ActionName("ClientList")]
         public ActionResult GetClientList()
         {
-            Dictionary<int, string> ClientList = new Dictionary<int, string>();
-            ClientList.Add(1, "test");
-            ClientList.Add(2, "test2");
+            Dictionary<int, string> ClientList = ClientBAObject.GetClientList();
             return View("IndexListClients", ClientList);
         }
 
@@ -164,7 +164,8 @@ namespace MyMarketingBackEnd.WebApp.Controllers
             
             // read data in here
             clientObj = ViewModelManager.ConvertClientToClientVM(ClientBAObject.GetClientDetails(Convert.ToInt32(id)));
-            
+
+            ViewBag.Mode = TransactionMode.Update;
             return PartialView("_ClientDetails", clientObj);
         }
     }

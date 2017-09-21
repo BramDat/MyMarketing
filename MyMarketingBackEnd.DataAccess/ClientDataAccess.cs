@@ -218,10 +218,10 @@ namespace MyMarketingBackEnd.DataAccess
             }
         }
 
-        public bool GetClientDetails(int clientId, string selectQuery, Client obj)
+        public bool GetClientDetails(int clientId, string selectQuery, ClientAuth obj)
         {
             if (obj == null)
-                obj = new Client();
+                obj = new ClientAuth();
             try
             {
                 using (SqlConnection con = new SqlConnection(ConnectionStr))
@@ -252,6 +252,36 @@ namespace MyMarketingBackEnd.DataAccess
 
                     return true;
                 }
+            }
+            catch (Exception ex)
+            {
+                return false;
+            }
+        }
+
+        public bool GetClientList(string selectQuery, Dictionary<int, string> clientList)
+        {
+            if (clientList == null)
+                clientList = new Dictionary<int, string>();
+
+            try
+            {
+                using (SqlConnection con = new SqlConnection(ConnectionStr))
+                {
+                    con.Open();
+                    SqlCommand cmd = new SqlCommand(selectQuery, con);
+
+                    SqlDataReader dr = cmd.ExecuteReader();
+
+                    if (dr.HasRows)
+                    {
+                        while (dr.Read())
+                        {
+                            clientList.Add(Convert.ToInt32(dr["ClientId"]), Convert.ToString(dr["ClientFirstName"]) + " " + Convert.ToString(dr["ClientLastName"]));
+                        }
+                    }
+                }
+                return true;
             }
             catch (Exception ex)
             {

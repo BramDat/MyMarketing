@@ -82,10 +82,10 @@ namespace MyMarketingBackEnd.Business
             return retFlag;
         }
 
-        public Client GetClientDetails(int clientId)
+        public ClientAuth GetClientDetails(int clientId)
         {
-            Client clientObj = new Client();
-            
+            ClientAuth clientObj = new ClientAuth();
+
             StringBuilder sb = new StringBuilder("SELECT * FROM CLIENT WHERE CLIENTID = @ClientId");
 
             if (ClientDA.GetClientDetails(clientId, sb.ToString(), clientObj))
@@ -93,5 +93,20 @@ namespace MyMarketingBackEnd.Business
             else
                 return null;
         }
+
+        public Dictionary<int, string> GetClientList()
+        {
+            Dictionary<int, string> clientList = new Dictionary<int, string>();
+            StringBuilder sb = new StringBuilder("SELECT ClientId, ClientFirstName, ClientLastName FROM CLIENT");
+
+            if (ClientDA.GetClientList(sb.ToString(), clientList))
+                return clientList;
+            else
+            {
+                clientList.Add(0, "No Clients Found");
+                return clientList;
+            }
+        }
+
     }
 }
