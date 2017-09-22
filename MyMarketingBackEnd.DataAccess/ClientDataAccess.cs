@@ -319,5 +319,83 @@ namespace MyMarketingBackEnd.DataAccess
                 return false;
             }
         }
+
+        public bool GetFullBusinessData(int clientId, string selectQuery, List<ClientBusiness> businessList)
+        {
+            if (businessList == null)
+                businessList = new List<ClientBusiness>();
+
+            try
+            {
+                using (SqlConnection con = new SqlConnection(ConnectionStr))
+                {
+                    con.Open();
+                    SqlCommand cmd = new SqlCommand(selectQuery, con);
+
+                    SqlDataReader dr = cmd.ExecuteReader();
+
+                    if (dr.HasRows)
+                    {
+                        while (dr.Read())
+                        {
+                            ClientBusiness cb = new ClientBusiness();
+                            cb.BizId = Convert.ToInt32(dr["ClientBusinessDetailId"]);
+
+                            if (businessList.Count > 0 && businessList.Any(x => x.BizId == cb.BizId))
+                            {
+                                // Add gallery details to the existing element's biz details
+                                ClientBusinessGallery cbg = new ClientBusinessGallery();
+
+                                cbg.GalleryId = Convert.ToInt32(dr["GalleryId"]);
+                                cbg.ImageName = Convert.ToString(dr["ImageName"]);
+                                cbg.UploadDate = Convert.ToDateTime(dr["UploadedDate"]);
+
+                                if (cb.GalleryList == null)
+                                    cb.GalleryList = new List<ClientBusinessGallery>();
+
+                                cb.GalleryList.Add(cbg);
+                            }
+
+                            cb.BizCategoryId = Convert.ToInt32(dr["BusinessCategoryTypeId"]);
+                            cb.BizSubCategoryType = Convert.ToString(dr["BusinessSubCategoryType"]);
+                            cb.ClientId = Convert.ToInt32(dr["PayPeriodTypeId"]);
+                            //cb. = Convert.ToString(dr["BusinessHours"]);
+                            cb.IsPremiumBiz = Convert.ToBoolean(dr["IsPremiumCustomer"]);
+                            cb.NegotiatedPrice = Convert.ToDecimal(dr["NegotiatedPrice"]);
+                            cb.IsBuldDataReceived = Convert.ToBoolean(dr["IsBulkDataReceived"]);
+                            cb.IsPhonePublic = Convert.ToBoolean(dr["IsMobileNumberToBePublicAccess"]);
+                            cb.GeoLongitude = Convert.ToDecimal(dr["LocationLongitude"]);
+                            cb.GeoLatitude = Convert.ToDecimal(dr["LocationLattitude"]);
+                            cb.CreatedDate = Convert.ToDateTime(dr["CreatedDate"]);
+                            cb.IsActive = Convert.ToBoolean(dr["IsActive"]);
+                            cb.BizDescription = Convert.ToString(dr["BusinessDescription"]);
+                            cb.BizGalleryPath = Convert.ToString(dr["BusinessGalleryPath"]);
+                            cb.BizWebSite = Convert.ToString(dr["BusinessWebSite"]);
+                            cb.BizLogoPath = Convert.ToString(dr["BusinessLogoPath"]);
+                            cb.BizSubCategoryNativeType = Convert.ToString(dr["BusinessSubCategoryNativeType"]);
+
+                            ClientBusinessGallery cbg2 = new ClientBusinessGallery();
+
+                            cbg2.GalleryId = Convert.ToInt32(dr["GalleryId"]);
+                            cbg2.ImageName = Convert.ToString(dr["ImageName"]);
+                            cbg2.UploadDate = Convert.ToDateTime(dr["UploadedDate"]);
+
+                            cb.GalleryList = new List<ClientBusinessGallery>();
+
+                            cb.GalleryList.Add(cbg2);
+
+                        }
+                    }
+                }
+                return true;
+            }
+            catch (Exception ex)
+            {
+                return false;
+            }
+
+            return true;
+        }
+
     }
 }

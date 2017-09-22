@@ -197,8 +197,12 @@ namespace MyMarketingBackEnd.WebApp.Controllers
         {
             ClientVM clientObj = new ClientVM();
 
+            clientObj.ClientId = Convert.ToInt32(id);
+
             // read data in here
-            clientObj = ViewModelManager.ConvertClientToClientVM(ClientBAObject.GetClientDetails(Convert.ToInt32(id)));
+            clientObj = ViewModelManager.ConvertClientToClientVM(ClientBAObject.GetClientDetails(clientObj.ClientId));
+
+            clientObj.Business = BusinessBAObject.GetBusinessDetails(clientObj.ClientId);
 
             ViewData["LoadMode"] = TransactionMode.Update;
             return PartialView("_ClientDetails", clientObj);
@@ -206,12 +210,14 @@ namespace MyMarketingBackEnd.WebApp.Controllers
 
         public JsonResult GenerateUName(string firsName, string lastName)
         {
-            return Json("sampleID", JsonRequestBehavior.AllowGet);
+            string uname = Utility.Utility.GenerateUserName(firsName, lastName);
+            return Json(uname, JsonRequestBehavior.AllowGet);
         }
 
         public JsonResult GeneratePassword(string firsName, string lastName)
         {
-            return Json("samplePswd", JsonRequestBehavior.AllowGet);
+            string pswd = Utility.Utility.GeneratePassword();
+            return Json(pswd, JsonRequestBehavior.AllowGet);
         }
     }
 }

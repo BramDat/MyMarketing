@@ -45,7 +45,7 @@ namespace MyMarketingBackEnd.Business
                 insertQuery.Append("SELECT CAST(scope_identity() AS int);");
 
                 clientBixObj.BizId = clientDA.AddClientBizDetails(clientBixObj, insertQuery.ToString());
-                
+
                 returnFlag = (clientBixObj.BizId > 0) ? true : false;
 
             }
@@ -83,5 +83,22 @@ namespace MyMarketingBackEnd.Business
         {
             throw new NotImplementedException();
         }
+
+        public List<ClientBusiness> GetBusinessDetails(int clientId)
+        {
+            List<ClientBusiness> cbObj = new List<ClientBusiness>();
+
+            StringBuilder sb = new StringBuilder("SELECT B.ClientBusinessDetailId, B.ClientId,B.BusinessCategoryTypeId,B.BusinessSubCategoryType,B.PayPeriodTypeId,B.BusinessHours,B.IsPremiumCustomer,");
+            sb.Append("B.NegotiatedPrice,B.IsBulkDataReceived,B.IsMobileNumberToBePublicAccess,B.LocationLongitude,B.LocationLattitude,B.CreatedDate,");
+            sb.Append("B.IsActive,B.BusinessDescription,B.BusinessGalleryPath,B.BusinessWebSite,B.BusinessLogoPath,B.BusinessSubCategoryNativeType,");
+            sb.Append("BG.GalleryId, BG.ImageName, BG.UploadedDate FROM ClientBusinessDetails B LEFT OUTER JOIN ClientBusinessGallery BG ON ");
+            sb.Append("B.ClientBusinessDetailId=BG.ClientBusinessDetailId WHERE B.ClientId=@ClientId");
+
+            if (clientDA.GetFullBusinessData(clientId, sb.ToString(), cbObj))
+                return cbObj;
+            else
+                return null;
+        }
+
     }
 }

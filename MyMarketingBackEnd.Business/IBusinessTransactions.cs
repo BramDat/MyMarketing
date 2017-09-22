@@ -19,5 +19,7 @@ namespace MyMarketingBackEnd.Business
 
         bool UploadLogo(ClientBusiness cbObject);
 
+        List<ClientBusiness> GetBusinessDetails(int clientId);
+
     }
 }

@@ -4,6 +4,16 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 <script src='@Url.Content("~/Content/Scripts/jquery.unobtrusive-ajax.js")'></script>
+<script>
+    function clearFormBeforeCall() {
+
+        var elem = document.getElementById("cListAdditionalDetails");
+
+        while (elem.hasChildNodes()) {
+            elem.removeChild(elem.lastChild);
+        }
+    }
+</script>
 <style>
     #cListAdditionalDetails {
         float: left;
@@ -51,8 +61,8 @@
 </style>
 
 <div id="mainContent">
+    <h3 style="float: left; width: 100%; margin-left: 1%;">Edit Client</h3>
     <div id="cListAdditionalDetails">
-        <h3 style="float: left; width: 100%; margin-left: 1%;">Edit Client</h3>
     </div>
     <div id="cListTBLWrap">
         <table id="tblClientList">
@@ -79,7 +89,9 @@
                        {
                            HttpMethod = "GET",
                            InsertionMode = InsertionMode.InsertAfter,
-                           UpdateTargetId = "cListAdditionalDetails"
+                           UpdateTargetId = "cListAdditionalDetails",
+                           OnBegin = "clearFormBeforeCall",
+                           LoadingElementId = "manualLoading"
                        }, null)</td>
                     </tr>
                     }
@@ -92,7 +104,9 @@
                        {
                            HttpMethod = "GET",
                            InsertionMode = InsertionMode.InsertAfter,
-                           UpdateTargetId = "cListAdditionalDetails"
+                           UpdateTargetId = "cListAdditionalDetails",
+                           OnBegin = "clearFormBeforeCall",
+                           LoadingElementId = "manualLoading"
                        }, null)</td>
                     </tr>
                     }

@@ -131,6 +131,7 @@
         </tbody>
     </table>
     <input id="_hdnUnCS" value="false" type="hidden" />
+    <input id="_hdnUnPD" value="false" type="hidden" />    
 }
 <script type="text/javascript">
     $(document).ready(function () {
@@ -146,7 +147,36 @@
             });
         });
 
+        $("#saveClientDtls").bind("click", function (e) {
+            var isUNameCreated = false;
+            var isPswdCreated = false;
+            var isFNameFilled = false;
+            var isLNameFilled = false;
 
+            var firstNameVal = $("#FirstName").val();
+            var lastNameVal = $("#LastName").val();
+
+            if ($("#_hdnUnPD").val() == "true") {
+                isUNameCreated = true;
+            }
+
+            if ($("#_hdnUnCS").val() == "true") {
+                isPswdCreated = true;
+            }
+
+            if (firstNameVal != "" && firstNameVal != undefined && firstNameVal != null) {
+                isFNameFilled = true;
+            }
+
+            if (lastNameVal != "" && lastNameVal != undefined && lastNameVal != null) {
+                isLNameFilled = true;
+            }
+
+            if (isUNameCreated == false || isPswdCreated == false || isFNameFilled == false || isLNameFilled == false) {
+                e.preventDefault();
+                alert("Please fill in First Name, Last Name and generate both UserName and Password to continue saving.");
+            }
+        });
 
         $("#genUName").click(function () {
 
@@ -221,6 +251,7 @@
             alert(data);
             $("#Password").val(data);
             $("#Password").attr('disabled', 'disabled');
+            $("#_hdnUnPD").val("true");
         }
     });
 </script>
