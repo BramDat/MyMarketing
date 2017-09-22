@@ -57,7 +57,7 @@ namespace MyMarketingBackEnd.WebApp.Controllers
                 {
                     try
                     {
-                        if (ClientBAObject.CreateClient(clientObj))
+                        if (ClientBAObject.UpdateClient(clientObj))
                         {
                             TempData["EditClientStatus"] = DBTransactionStatus.Success;
                             return RedirectToAction("ClientList");
@@ -85,7 +85,10 @@ namespace MyMarketingBackEnd.WebApp.Controllers
             else
             {
                 ModelState.AddModelError("Error", "Please fill in all madatory fields.");
-                ViewData["StartStepNum"] = currentStep;
+                if ((TransactionMode)Enum.Parse(typeof(TransactionMode), loadMode) == TransactionMode.Create)
+                {
+                    ViewData["StartStepNum"] = currentStep;
+                }
                 return View("Index");
             }
         }
@@ -202,7 +205,7 @@ namespace MyMarketingBackEnd.WebApp.Controllers
             // read data in here
             clientObj = ViewModelManager.ConvertClientToClientVM(ClientBAObject.GetClientDetails(clientObj.ClientId));
 
-            clientObj.Business = BusinessBAObject.GetBusinessDetails(clientObj.ClientId);
+            //clientObj.Business = BusinessBAObject.GetBusinessDetails(clientObj.ClientId);
 
             ViewData["LoadMode"] = TransactionMode.Update;
             return PartialView("_ClientDetails", clientObj);

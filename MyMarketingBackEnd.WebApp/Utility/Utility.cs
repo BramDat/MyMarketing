@@ -17,9 +17,9 @@ namespace MyMarketingBackEnd.WebApp.Utility
             string newUName = default(string);
 
             if (uNameCheckCounter < firstName.Length)
-                newUName = firstName[uNameCheckCounter].ToString() + lastName.Substring(0, 5);
+                newUName = firstName[uNameCheckCounter].ToString() + lastName.Substring(0, lastName.Length);
             else
-                newUName = firstName[0].ToString() + lastName.Substring(1, 6);
+                newUName = firstName[0].ToString() + lastName.Substring(1, (lastName.Length - 1));
 
             if (userIdList == null || userIdList.Count < 1)
                 return newUName;

@@ -80,11 +80,15 @@ namespace MyMarketingBackEnd.Business
         /// <returns></returns>
         public bool UpdateClient(Client clientObj)
         {
-            bool retFlag = default(bool);
+            StringBuilder sb = new StringBuilder("UPDATE [dbo].[Client] SET [ClientFirstName] = @ClientFirstName,[ClientLastName] = @ClientLastName,");
+            sb.Append("[BusinessName] = @BusinessName,[ClientPrimaryAddress] = @ClientPrimaryAddress,[PrimaryContactNumber] = @PrimaryContactNumber,");
+            sb.Append("[AlternateContactNumber] = @AlternateContactNumber,[PrimaryMailId] = @PrimaryMailId,[FacebookId] = @FacebookId,");
+            sb.Append("[CreatedDate] = @CreatedDate,[IsActive] = @IsActive WHERE ClientId = @ClientId");
 
-
-
-            return retFlag;
+            if (ClientDA.UpdateClientDetails(clientObj, sb.ToString()))
+                return true;
+            else
+                return false;
         }
 
         /// <summary>

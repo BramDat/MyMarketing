@@ -3,11 +3,11 @@
 {
     if (ViewData["StartStepNum"] != null)
     {
-        Html.Hidden("currentStep", ViewData["StartStepNum"].ToString());
+        @Html.Hidden("currentStep", ViewData["StartStepNum"].ToString());
     }
     if (ViewData["LoadMode"] != null)
     {
-        Html.Hidden("LoadMode", ViewData["LoadMode"].ToString());
+        @Html.Hidden("loadMode", ViewData["LoadMode"].ToString());
     }
     <table id="clientDetailsform" class="basicForm">
         <tbody>
@@ -210,7 +210,6 @@
         });
 
         function uNameSuccessCreation(data, status) {
-            alert(data);
             $("#UserName").val(data);
             $("#UserName").attr('disabled', 'disabled');
             $("#_hdnUnCS").val("true");
@@ -248,7 +247,6 @@
         });
 
         function psWdSuccessCreation(data, status) {
-            alert(data);
             $("#Password").val(data);
             $("#Password").attr('disabled', 'disabled');
             $("#_hdnUnPD").val("true");
