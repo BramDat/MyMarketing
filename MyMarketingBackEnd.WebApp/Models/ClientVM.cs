@@ -8,7 +8,7 @@ namespace MyMarketingBackEnd.WebApp.Models
 {
     public class ClientVM : ClientAuth
     {
-        public List<ClientBusinessGallery> Business { get; set; }
+        public List<ClientBusiness> Business { get; set; }
 
         public Dictionary<int, string> BusinessCategoryList { get; set; }
         public Dictionary<int, string> PayPeriodList { get; set; }

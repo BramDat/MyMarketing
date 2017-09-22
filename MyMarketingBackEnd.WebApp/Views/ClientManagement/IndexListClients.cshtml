@@ -20,7 +20,7 @@
         font-size: 12px;
         font-family: Tahoma;
         color: rgb(0,162,232);
-        margin: 1%;
+        margin: 1% 1% 2% 1%;
         float: left;
         width: 98%;
     }
@@ -42,10 +42,17 @@
         #tblClientList .evenRow {
             background-color: aliceblue;
         }
+
+    #mainContent .commonPara {
+        float: left;
+        margin-left: 2%;
+        font-size: 12px;
+    }
 </style>
 
 <div id="mainContent">
     <div id="cListAdditionalDetails">
+        <h3 style="float: left; width: 100%; margin-left: 1%;">Edit Client</h3>
     </div>
     <div id="cListTBLWrap">
         <table id="tblClientList">
@@ -93,5 +100,6 @@
                 }
             </tbody>
         </table>
+        <p class="commonPara">Wanna add a client? @Html.ActionLink("Click Here", "Index", "ClientManagement", null, new { style = "color:blue;font-size:11px;" })</p>
     </div>
 </div>

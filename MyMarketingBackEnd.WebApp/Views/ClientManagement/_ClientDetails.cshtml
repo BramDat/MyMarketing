@@ -130,6 +130,7 @@
             </tr>
         </tbody>
     </table>
+    <input id="_hdnUnCS" value="false" type="hidden" />
 }
 <script type="text/javascript">
     $(document).ready(function () {
@@ -145,5 +146,81 @@
             });
         });
 
+
+
+        $("#genUName").click(function () {
+
+            var firstNameVal = $("#FirstName").val();
+            var lastNameVal = $("#LastName").val();
+            var isUNameCreated = $("#_hdnUnCS").val();
+
+            if (firstNameVal == "" || firstNameVal == undefined || firstNameVal == null) {
+                alert("Please fill in FirstName and LastName to generate UserId");
+            }
+            else if (lastNameVal == "" || lastNameVal == undefined || lastNameVal == null) {
+                alert("Please fill in FirstName and LastName to generate UserId");
+            }
+            else if (isUNameCreated != "false") {
+                alert("UserName had already been generated for this user");
+            }
+            else {
+                var serviceURL = '/ClientManagement/GenerateUName';
+                $.ajax({
+                    type: "POST",
+                    url: serviceURL,
+                    data: JSON.stringify({ "firsName": firstNameVal, "lastName": lastNameVal }),
+                    contentType: "application/json; charset=utf-8",
+                    dataType: "json",
+                    success: uNameSuccessCreation,
+                    error: function (jqXHR, exception) {
+                        alert(jqXHR.responseText);
+                    }
+                });
+            }
+        });
+
+        function uNameSuccessCreation(data, status) {
+            alert(data);
+            $("#UserName").val(data);
+            $("#UserName").attr('disabled', 'disabled');
+            $("#_hdnUnCS").val("true");
+        }
+
+        $("#genPswd").click(function () {
+
+            var firstNameVal = $("#FirstName").val();
+            var lastNameVal = $("#LastName").val();
+            var isUNameCreated = $("#_hdnUnCS").val();
+
+            if (firstNameVal == "" || firstNameVal == undefined || firstNameVal == null) {
+                alert("Please fill in FirstName and LastName to generate UserId");
+            }
+            else if (lastNameVal == "" || lastNameVal == undefined || lastNameVal == null) {
+                alert("Please fill in FirstName and LastName to generate UserId");
+            }
+            else if (isUNameCreated == "false") {
+                alert("Please generate User Name first by clicking 'Generate UserName' button");
+            }
+            else {
+                var serviceURL = '/ClientManagement/GeneratePassword';
+                $.ajax({
+                    type: "POST",
+                    url: serviceURL,
+                    data: JSON.stringify({ "firsName": firstNameVal, "lastName": lastNameVal }),
+                    contentType: "application/json; charset=utf-8",
+                    dataType: "json",
+                    success: psWdSuccessCreation,
+                    error: function (jqXHR, exception) {
+                        alert(jqXHR.responseText);
+                    }
+                });
+            }
+        });
+
+        function psWdSuccessCreation(data, status) {
+            alert(data);
+            $("#Password").val(data);
+            $("#Password").attr('disabled', 'disabled');
+        }
     });
 </script>

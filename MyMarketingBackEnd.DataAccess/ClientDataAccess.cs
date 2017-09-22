@@ -289,5 +289,35 @@ namespace MyMarketingBackEnd.DataAccess
                 return false;
             }
         }
+
+        public bool GetUserIDList(string selectQuery, List<String> UserList)
+        {
+            if (UserList == null)
+                UserList = new List<string>();
+
+            try
+            {
+                using (SqlConnection con = new SqlConnection(ConnectionStr))
+                {
+                    con.Open();
+                    SqlCommand cmd = new SqlCommand(selectQuery, con);
+
+                    SqlDataReader dr = cmd.ExecuteReader();
+
+                    if (dr.HasRows)
+                    {
+                        while (dr.Read())
+                        {
+                            UserList.Add(Convert.ToString(dr["ClientUserName"]));
+                        }
+                    }
+                }
+                return true;
+            }
+            catch (Exception ex)
+            {
+                return false;
+            }
+        }
     }
 }

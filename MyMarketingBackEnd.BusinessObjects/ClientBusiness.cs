@@ -54,5 +54,7 @@ namespace MyMarketingBackEnd.BusinessObjects
         public decimal GeoLongitude { get; set; }
 
         public DateTime CreatedDate { get; set; }
+
+        public List<ClientBusinessGallery> GalleryList { get; set; }
     }
 }

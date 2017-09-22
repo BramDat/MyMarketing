@@ -73,6 +73,11 @@ namespace MyMarketingBackEnd.Business
             return retFlag;
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="clientObj"></param>
+        /// <returns></returns>
         public bool UpdateClient(Client clientObj)
         {
             bool retFlag = default(bool);
@@ -80,6 +85,24 @@ namespace MyMarketingBackEnd.Business
 
 
             return retFlag;
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
+        public bool CreateClientGallery()
+        {
+            return true;
+        }
+
+        public List<string> GetUserIDs()
+        {
+            List<string> userIDList = new List<string>();
+
+            StringBuilder sb = new StringBuilder("SELECT ClientUserName FROM ClientAuthentication");
+
+            return userIDList;
         }
 
         public ClientAuth GetClientDetails(int clientId)

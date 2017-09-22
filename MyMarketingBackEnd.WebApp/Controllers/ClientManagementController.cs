@@ -142,10 +142,10 @@ namespace MyMarketingBackEnd.WebApp.Controllers
                         if (BusinessBAObject.UploadLogo(clientObj))
                         {
                             ClientVM clientVMObj = new ClientVM(); // Passing the view model itself to the GET of GalleryAction
-                            ClientBusinessGallery cbg = new ClientBusinessGallery();
+                            ClientBusiness cbg = new ClientBusiness();
                             cbg.BizId = clientObj.BizId;
                             cbg.ClientId = clientObj.ClientId;
-                            clientVMObj.Business = new List<ClientBusinessGallery>();
+                            clientVMObj.Business = new List<ClientBusiness>();
                             clientVMObj.Business.Add(cbg);
                             return SaveImagesToGallery(clientVMObj, (Convert.ToInt32(currentStep) + 1).ToString());
                         }
@@ -202,6 +202,16 @@ namespace MyMarketingBackEnd.WebApp.Controllers
 
             ViewData["LoadMode"] = TransactionMode.Update;
             return PartialView("_ClientDetails", clientObj);
+        }
+
+        public JsonResult GenerateUName(string firsName, string lastName)
+        {
+            return Json("sampleID", JsonRequestBehavior.AllowGet);
+        }
+
+        public JsonResult GeneratePassword(string firsName, string lastName)
+        {
+            return Json("samplePswd", JsonRequestBehavior.AllowGet);
         }
     }
 }

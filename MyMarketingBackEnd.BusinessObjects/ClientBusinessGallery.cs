@@ -6,8 +6,13 @@ using System.Threading.Tasks;
 
 namespace MyMarketingBackEnd.BusinessObjects
 {
-    public class ClientBusinessGallery : ClientBusiness
+    /// <summary>
+    /// Shouldn't have inherited ClientBusinessGallery from ClientBusiness
+    /// </summary>
+    public class ClientBusinessGallery
     {
+        public int BusinessId { get; set; }
+
         public int GalleryId { get; set; }
 
         public string ImageName { get; set; }
