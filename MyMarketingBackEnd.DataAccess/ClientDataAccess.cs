@@ -265,34 +265,32 @@ namespace MyMarketingBackEnd.DataAccess
 
         public bool AddGalleryDetails(ClientBusiness clientObj, string[] fileNames, string insertQuery)
         {
-            try
+            SqlTransaction objTrans = null;
+            using (SqlConnection con = new SqlConnection(ConnectionStr))
             {
-                SqlTransaction objTrans = null;
-                using (SqlConnection con = new SqlConnection(ConnectionStr))
+                con.Open();
+                objTrans = con.BeginTransaction();
+                try
                 {
-                    con.Open();
-                    objTrans = con.BeginTransaction();
-                    try
+                    foreach (var item in fileNames)
                     {
-                        foreach (var item in fileNames)
-                        {
-                            SqlCommand cmd = new SqlCommand(insertQuery, con);
-                            cmd.Parameters.Add(new SqlParameter() { ParameterName = "@ClientBusinessDetailId", SqlDbType = SqlDbType.Int, Value = clientObj.BizId });
-                            cmd.Parameters.Add(new SqlParameter() { ParameterName = "@ImageName", SqlDbType = SqlDbType.VarChar, Value = item, Size = 40 });
-                            cmd.Parameters.Add(new SqlParameter() { ParameterName = "@UploadedDate", SqlDbType = SqlDbType.DateTime, Value = DateTime.Now });
-                            cmd.Parameters.Add(new SqlParameter() { ParameterName = "@IsActive", SqlDbType = SqlDbType.Bit, Value = true });
-                            cmd.ExecuteNonQuery();
-                        }
-                        objTrans.Commit();
+                        SqlCommand cmd = new SqlCommand(insertQuery, con);
+                        cmd.Transaction = objTrans;
+                        cmd.Parameters.Add(new SqlParameter() { ParameterName = "@ClientBusinessDetailId", SqlDbType = SqlDbType.Int, Value = clientObj.BizId });
+                        cmd.Parameters.Add(new SqlParameter() { ParameterName = "@ImageName", SqlDbType = SqlDbType.VarChar, Value = item, Size = 40 });
+                        cmd.Parameters.Add(new SqlParameter() { ParameterName = "@UploadedDate", SqlDbType = SqlDbType.DateTime, Value = DateTime.Now });
+                        cmd.Parameters.Add(new SqlParameter() { ParameterName = "@IsActive", SqlDbType = SqlDbType.Bit, Value = true });
+                        cmd.ExecuteNonQuery();
                     }
-                    catch (Exception ex)
-                    {
-                        objTrans.Rollback();
-                        con.Close();
-                        throw ex;
-                    }
-                    return true;
+                    objTrans.Commit();
                 }
+                catch (Exception ex)
+                {
+                    objTrans.Rollback();
+                    con.Close();
+                    throw ex;
+                }
+                return true;
             }
         }
 

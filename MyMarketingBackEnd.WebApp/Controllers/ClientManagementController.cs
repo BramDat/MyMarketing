@@ -210,6 +210,7 @@ namespace MyMarketingBackEnd.WebApp.Controllers
                     else
                     {
                         // delete files
+                        throw new Exception("Error while updating DB. Please try again!");
                     }
                 }
             }

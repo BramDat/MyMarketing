@@ -15,7 +15,7 @@ namespace MyMarketingBackEnd.Business
 
         bool UpdateBusinessDetails();
 
-        bool UploadGallery();
+        bool UploadGallery(ClientBusiness cbObject, string[] fileList);
 
         bool UploadLogo(ClientBusiness cbObject);
 
