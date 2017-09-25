@@ -92,7 +92,7 @@ namespace MyMarketingBackEnd.DataAccess
                             new SqlParameter(){ParameterName="@ClientPrimaryAddress",SqlDbType=SqlDbType.VarChar,Value=clientObj.PrimaryAddress, Size=400},
                             new SqlParameter(){ParameterName="@PrimaryContactNumber",SqlDbType=SqlDbType.Decimal,Value=clientObj.PrimaryPhoneNum, Precision=10, Scale=0},
                             new SqlParameter(){ParameterName="@AlternateContactNumber",SqlDbType=SqlDbType.Decimal,Value=DBHelper.DefaultForDBNullValues(clientObj.AltPhoneNum),  Precision=10, Scale=0},
-                            new SqlParameter(){ParameterName="@PrimaryMailId",SqlDbType=SqlDbType.VarChar,Value=DBHelper.DefaultForDBNullValues(clientObj.AltPhoneNum),  Size=200},
+                            new SqlParameter(){ParameterName="@PrimaryMailId",SqlDbType=SqlDbType.VarChar,Value=DBHelper.DefaultForDBNullValues(clientObj.PrimaryMail),  Size=200},
                             new SqlParameter(){ParameterName="@FacebookId",SqlDbType=SqlDbType.VarChar,Value=DBHelper.DefaultForDBNullValues(clientObj.FacebookId), Size=200},
                             new SqlParameter(){ParameterName="@CreatedDate",SqlDbType=SqlDbType.DateTime,Value=clientObj.CreatedDate},
                             new SqlParameter(){ParameterName="@IsActive",SqlDbType=SqlDbType.Bit,Value=clientObj.IsActive}
@@ -229,23 +229,26 @@ namespace MyMarketingBackEnd.DataAccess
 
                     List<SqlParameter> sParamList = new List<SqlParameter>()
                     {
-                            new SqlParameter(){ParameterName="@ClientId",SqlDbType=SqlDbType.Int,Value=clientObj.FirstName, Size=100},
+                            new SqlParameter(){ParameterName="@ClientId",SqlDbType=SqlDbType.Int,Value=clientObj.ClientId},
                             new SqlParameter(){ParameterName="@ClientFirstName",SqlDbType=SqlDbType.VarChar,Value=clientObj.FirstName, Size=100},
                             new SqlParameter(){ParameterName="@ClientLastName",SqlDbType=SqlDbType.VarChar,Value=clientObj.LastName, Size=100},
                             new SqlParameter(){ParameterName="@BusinessName",SqlDbType=SqlDbType.VarChar,Value=clientObj.BusinessName, Size=200},
                             new SqlParameter(){ParameterName="@ClientPrimaryAddress",SqlDbType=SqlDbType.VarChar,Value=clientObj.PrimaryAddress, Size=400},
                             new SqlParameter(){ParameterName="@PrimaryContactNumber",SqlDbType=SqlDbType.Decimal,Value=clientObj.PrimaryPhoneNum, Precision=10, Scale=0},
                             new SqlParameter(){ParameterName="@AlternateContactNumber",SqlDbType=SqlDbType.Decimal,Value=DBHelper.DefaultForDBNullValues(clientObj.AltPhoneNum),  Precision=10, Scale=0},
-                            new SqlParameter(){ParameterName="@PrimaryMailId",SqlDbType=SqlDbType.VarChar,Value=DBHelper.DefaultForDBNullValues(clientObj.AltPhoneNum),  Size=200},
+                            new SqlParameter(){ParameterName="@PrimaryMailId",SqlDbType=SqlDbType.VarChar,Value=DBHelper.DefaultForDBNullValues(clientObj.PrimaryMail),  Size=200},
                             new SqlParameter(){ParameterName="@FacebookId",SqlDbType=SqlDbType.VarChar,Value=DBHelper.DefaultForDBNullValues(clientObj.FacebookId), Size=200},
-                            new SqlParameter(){ParameterName="@CreatedDate",SqlDbType=SqlDbType.DateTime,Value=clientObj.CreatedDate},
                             new SqlParameter(){ParameterName="@IsActive",SqlDbType=SqlDbType.Bit,Value=clientObj.IsActive}
                         };
 
                     cmd.Parameters.AddRange(sParamList.ToArray());
 
-                    cmd.ExecuteNonQuery();
-                    return true;
+                    int retCount = (int)cmd.ExecuteNonQuery();
+
+                    if (retCount > 0)
+                        return true;
+                    else
+                        return false;
                 }
             }
             catch (Exception ex)

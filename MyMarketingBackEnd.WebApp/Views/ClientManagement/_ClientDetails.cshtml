@@ -3,11 +3,15 @@
 {
     if (ViewData["StartStepNum"] != null)
     {
-        @Html.Hidden("currentStep", ViewData["StartStepNum"].ToString());
+    @Html.Hidden("currentStep", ViewData["StartStepNum"].ToString());
     }
     if (ViewData["LoadMode"] != null)
     {
-        @Html.Hidden("loadMode", ViewData["LoadMode"].ToString());
+    @Html.Hidden("loadMode", ViewData["LoadMode"].ToString());
+                                                             if ((TransactionMode)ViewData["LoadMode"] == TransactionMode.Update)
+                                                             {
+    @Html.HiddenFor(model => model.ClientId)
+                                                             }
     }
     <table id="clientDetailsform" class="basicForm">
         <tbody>
@@ -123,10 +127,21 @@
                 <td colspan="5">
                     @Html.ValidationSummary()
                 </td>
-                <td>
-                    <button type="submit" id="saveClientDtls" class="btnSubmit">SAVE & NEXT</button>
-                    <button type="button" id="cancelClientDtls" class="btnGray btnCancel">CANCEL</button>
-                </td>
+                @if (ViewData["LoadMode"] != null && (TransactionMode)ViewData["LoadMode"] == TransactionMode.Create)
+                {
+                    <td>
+                        <button type="submit" id="saveClientDtls" class="btnSubmit">SAVE & NEXT</button>
+                        <button type="button" id="cancelClientDtls" class="btnGray btnCancel">CANCEL</button>
+                    </td>
+                }
+                else
+                {
+                    <td>
+                        <button type="submit" id="saveClientDtls" class="btnSubmit">UPDATE CLIENT</button>
+                        <button type="button" id="cancelClientDtls" class="btnGray btnCancel">CANCEL</button>
+                    </td>
+               
+                }
             </tr>
         </tbody>
     </table>
@@ -135,7 +150,6 @@
 }
 <script type="text/javascript">
     $(document).ready(function () {
-
         // setting all textboxes during new client is being nullified
         $('#formClientBasic input[type="text"]').each(function () {
             this.value = "";

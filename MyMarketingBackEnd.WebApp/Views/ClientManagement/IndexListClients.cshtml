@@ -3,8 +3,11 @@
     ViewBag.Title = "IndexListClients";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+
 <script src='@Url.Content("~/Content/Scripts/jquery.unobtrusive-ajax.js")'></script>
-<script>
+<script src='@Url.Content("~/Content/Scripts/jquery.bpopup.min.js")'></script>
+
+<script type="text/javascript">
     function clearFormBeforeCall() {
 
         var elem = document.getElementById("cListAdditionalDetails");
@@ -13,6 +16,18 @@
             elem.removeChild(elem.lastChild);
         }
     }
+
+    $(document).ready(function () {
+        var msgStatus = '@ViewData["EditClientStatus"]';
+
+        if (msgStatus != null && msgStatus != undefined && msgStatus != "" && msgStatus != '') {
+            $("#customAlert").bPopup({
+                follow: [false, false],
+                position: [500, 200],
+                modalClose: false
+            });
+        }
+    });
 </script>
 <style>
     #cListAdditionalDetails {
@@ -58,10 +73,30 @@
         margin-left: 2%;
         font-size: 12px;
     }
+
+    .leftFull {
+        float: left;
+        width: 100%;
+        margin-left: 1%;
+    }
 </style>
 
 <div id="mainContent">
-    <h3 style="float: left; width: 100%; margin-left: 1%;">Edit Client</h3>
+    <h3 class="leftFull">Edit Client</h3>
+    @if (ViewData["EditClientStatus"] != null)
+    {
+        if ((DBTransactionStatus)ViewData["EditClientStatus"] == DBTransactionStatus.Success)
+        {
+            ViewData["PopMessage"] = "<h6 style='color: green;'>Client has been successfully updated!</h6>";
+        }
+        else
+        {
+            ViewData["PopMessage"] = "<h6><span style='color: red;'>Some Error occurred during saving data.</span> Please try again.</h6>";
+        }
+        @Html.ValidationSummary();
+        
+        @Html.Partial("~/Views/Shared/Alerts/_msgAlert.cshtml")
+    }
     <div id="cListAdditionalDetails">
     </div>
     <div id="cListTBLWrap">

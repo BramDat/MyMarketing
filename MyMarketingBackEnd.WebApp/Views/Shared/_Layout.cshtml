@@ -19,8 +19,10 @@
         <div id="leftNav">
             <ul>
                 <li>@Html.ActionLink("Home", "Index", "Home", null, null)</li>
-                <li>@Html.ActionLink("Client Management", "ClientList", "ClientManagement", null, null)</li>
-                <li>@Html.ActionLink("Client Business Management", "Index", "ClientManagement", null, null)</li>
+                <li>@Html.ActionLink("Add Client", "Index", "ClientManagement", null, null)</li>
+                <li>@Html.ActionLink("Edit Client", "ClientList", "ClientManagement", null, null)</li>
+                <li>@Html.ActionLink("Add Business To Client", "Index", "ClientManagement", null, null)</li>
+                <li>@Html.ActionLink("Edit Business", "Index", "ClientManagement", null, null)</li>
                 <li>@Html.ActionLink("Billing", "Index", "Home", null, null)</li>
                 <li>@Html.ActionLink("Client Payments", "Index", "Home", null, null)</li>
                 <li>@Html.ActionLink("Vendor Payments", "Index", "Home", null, null)</li>

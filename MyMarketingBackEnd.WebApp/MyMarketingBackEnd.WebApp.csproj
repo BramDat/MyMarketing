@@ -123,6 +123,7 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
+    <Content Include="Content\CSS\msgBox.css" />
     <Content Include="Content\CSS\style.css" />
     <Content Include="Content\CSS\webHeader.css" />
     <Content Include="Content\CSS\workflowBar.css" />
@@ -202,6 +203,9 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\ClientManagement\IndexListClients.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Shared\Alerts\_msgAlert.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

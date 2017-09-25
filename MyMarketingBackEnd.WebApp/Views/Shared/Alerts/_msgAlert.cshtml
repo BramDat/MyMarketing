@@ -1,0 +1,19 @@
+﻿<link href='@Url.Content("~/Content/CSS/msgBox.css")' rel="stylesheet" />
+<div id="customAlert">
+    <div id="msgAlertWrapper">
+        <div id="msgAlertheader">
+            <img src="@Url.Content("~/Content/images/Error/Info_error.png")" alt="icon" />
+            <h5>@Html.Display(ViewData["EditClientStatus"].ToString())</h5>
+        </div>
+        <div id="msgAlertContent">
+            <p>
+                @Html.Raw(ViewData["PopMessage"].ToString())
+            </p>
+            <br />
+            <a hred="#">CLOSE</a>
+        </div>
+        <div id="msgAlertFooter">
+            <span class="copyright">&copy; Copyright 2016 Hewlett Packard Enterprise Development Company, L.P. </span>
+        </div>
+    </div>
+</div>
