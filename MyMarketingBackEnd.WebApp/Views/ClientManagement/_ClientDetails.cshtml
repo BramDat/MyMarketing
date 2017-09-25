@@ -88,6 +88,7 @@
                     @if (ViewData["LoadMode"] != null && (TransactionMode)ViewData["LoadMode"] == TransactionMode.Create)
                     {
                         @Html.TextBoxFor(model => model.UserName)
+                        @Html.HiddenFor(model => model.UserName)
                     }
                     else
                     {
@@ -151,9 +152,20 @@
 <script type="text/javascript">
     $(document).ready(function () {
         // setting all textboxes during new client is being nullified
-        $('#formClientBasic input[type="text"]').each(function () {
-            this.value = "";
-        });
+        //$('#formClientBasic input[type="text"]').each(function () {
+        //    this.value = "";
+        //});
+
+        if ($("#PrimaryPhoneNum").val() == "0") {
+            $("#PrimaryPhoneNum").val("");
+        }
+
+        if ($("#AltPhoneNum").val() == "0") {
+            $("#AltPhoneNum").val("");
+        }
+
+        $("#UserName").val("");
+        $("#Password").val("");
 
         $(".btnCancel").click(function () {
             $('#formClientBasic input[type="text"]').each(function () {
@@ -224,8 +236,8 @@
         });
 
         function uNameSuccessCreation(data, status) {
-            $("#UserName").val(data);
-            $("#UserName").attr('disabled', 'disabled');
+            $("#UserName").val(data); 
+            $("#UserName").attr('readonly', 'readonly');
             $("#_hdnUnCS").val("true");
         }
 
@@ -262,7 +274,7 @@
 
         function psWdSuccessCreation(data, status) {
             $("#Password").val(data);
-            $("#Password").attr('disabled', 'disabled');
+            $("#Password").attr('readonly', 'readonly');
             $("#_hdnUnPD").val("true");
         }
     });

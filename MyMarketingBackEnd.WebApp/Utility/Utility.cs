@@ -21,25 +21,23 @@ namespace MyMarketingBackEnd.WebApp.Utility
             else
                 newUName = firstName[0].ToString() + lastName.Substring(1, (lastName.Length - 1));
 
-            if (userIdList == null || userIdList.Count < 1)
-                return newUName;
-
             if (!CheckUserNameExists(newUName))
                 return newUName;
+
             else
                 return GenerateUserName(firstName, lastName);
         }
 
         public static string GeneratePassword()
         {
-            Guid guidForPswrd = new Guid();
+            Guid guidForPswrd = Guid.NewGuid();
             string password = guidForPswrd.ToString().Split('-')[0];
             return password;
         }
 
         public static bool CheckUserNameExists(string userName)
         {
-            if (userIdList == null)
+            if (userIdList == null || (userIdList.Count == 0 && uNameCheckCounter == 0))
                 userIdList = ctObj.GetUserIDs();
 
             if (userIdList.Any(x => userName.Contains(x)))

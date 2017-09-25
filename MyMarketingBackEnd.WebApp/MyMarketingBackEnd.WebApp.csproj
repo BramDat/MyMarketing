@@ -129,9 +129,11 @@
     <Content Include="Content\CSS\workflowBar.css" />
     <Content Include="Content\Images\App_Logo.png" />
     <Content Include="Content\Images\Bmp_Icon.jpg" />
+    <Content Include="Content\Images\fail_icon.jpg" />
     <Content Include="Content\Images\jpg_icon.jpg" />
     <Content Include="Content\Images\loading.gif" />
     <Content Include="Content\Images\Png_Icon.jpg" />
+    <Content Include="Content\Images\success_icon.png" />
     <Content Include="Content\Scripts\jquery.bpopup.min.js" />
     <Content Include="Content\Scripts\jquery.unobtrusive-ajax.js" />
     <Content Include="Global.asax" />

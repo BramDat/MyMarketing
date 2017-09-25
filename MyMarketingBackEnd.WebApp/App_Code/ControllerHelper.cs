@@ -55,8 +55,16 @@ namespace MyMarketingBackEnd.WebApp.App_Code
             {
                 string logoDir = this.GetFullLogoDirectory(clientObj.ClientId);
                 string logoFileFullPath = Path.Combine(logoDir, Path.GetFileName(fileBase.FileName));
-                if (!Directory.Exists(logoDir))
-                    Directory.CreateDirectory(logoDir);
+                DirectoryInfo di = new DirectoryInfo(logoDir);
+                if (!di.Exists)
+                    di.Create();
+                else
+                {
+                    foreach (var item in di.GetFiles())
+                    {
+                        item.Delete();
+                    }
+                }
                 fileBase.SaveAs(logoFileFullPath);
                 return true;
             }

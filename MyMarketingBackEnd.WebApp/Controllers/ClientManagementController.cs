@@ -50,6 +50,7 @@ namespace MyMarketingBackEnd.WebApp.Controllers
                         ModelState.AddModelError("Error", ex.Message);
                         ModelState.AddModelError("More Details", ex);
                         ViewData["StartStepNum"] = currentStep;
+                        ViewData["LoadMode"] = (TransactionMode)Enum.Parse(typeof(TransactionMode), loadMode);
                         return View("Index");
                     }
                 }
@@ -79,6 +80,7 @@ namespace MyMarketingBackEnd.WebApp.Controllers
                 {
                     ModelState.AddModelError("Error", "Some error happened. Please try again later. If the problem still persists, please contact the WebAdmin.");
                     ViewData["StartStepNum"] = currentStep;
+                    ViewData["LoadMode"] = (TransactionMode)Enum.Parse(typeof(TransactionMode), loadMode);
                     return RedirectToAction("Index");
                 }
             }
@@ -86,10 +88,9 @@ namespace MyMarketingBackEnd.WebApp.Controllers
             {
                 ModelState.AddModelError("Error", "Please fill in all madatory fields.");
                 if ((TransactionMode)Enum.Parse(typeof(TransactionMode), loadMode) == TransactionMode.Create)
-                {
                     ViewData["StartStepNum"] = currentStep;
-                }
-                return View("Index");
+                ViewData["LoadMode"] = TransactionMode.Create;
+                return View("Index", clientObj);
             }
         }
 
@@ -99,6 +100,7 @@ namespace MyMarketingBackEnd.WebApp.Controllers
         public ActionResult GetBusinessDetails(ClientVM clientObj, string currentStep)
         {
             ControllerHelper.PrefillBusinessLists(BusinessBAObject, ref clientObj);
+            ModelState.Remove("currentStep");
             ViewData["StartStepNum"] = currentStep;
             return View("Index", clientObj);
         }
@@ -111,9 +113,15 @@ namespace MyMarketingBackEnd.WebApp.Controllers
             if (ModelState.IsValidField("Business[0].BizDescription") && ModelState.IsValidField("Business[0].NegotiatedPrice"))
             {
                 clientObj.Business[0].BizGalleryPath = ControllerHelper.GetGalleryDirectory(clientObj.Business[0].ClientId);
+                clientObj.Business[0].ClientId = clientObj.ClientId;
                 if (BusinessBAObject.SaveBusinessDetails(clientObj.Business[0]))
                 {
                     ViewData["StartStepNum"] = (Convert.ToInt32(currentStep) + 1).ToString();
+                    foreach (var item in ModelState)
+                    {
+                        ModelState[item.Key].Errors.Clear();
+                    }
+                    ModelState.Remove("currentStep");
                     return View("Index", clientObj);
                 }
                 else
@@ -180,8 +188,9 @@ namespace MyMarketingBackEnd.WebApp.Controllers
         [ChildActionOnly]
         public ActionResult SaveImagesToGallery(ClientVM clientObj, string currentStep)
         {
+            ModelState.Remove("currentStep");
             ViewData["StartStepNum"] = currentStep;
-            return View("Index");
+            return View("Index", clientObj);
         }
 
         [HttpGet]

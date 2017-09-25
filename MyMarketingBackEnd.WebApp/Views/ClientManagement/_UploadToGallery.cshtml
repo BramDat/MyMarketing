@@ -1,6 +1,19 @@
-﻿@model MyMarketingBackEnd.WebApp.Models.ClientVM
+﻿@model MyMarketingBackEnd.BusinessObjects.ClientBusiness
 @using (Html.BeginForm("", "", FormMethod.Post))
 {
-    @Html.HiddenFor(model => model.Business[0].ClientId)
-    @Html.HiddenFor(model => model.Business[0].BizId)
+    @Html.Hidden("currentStep", ViewData["StartStepNum"].ToString())
+    @Html.HiddenFor(model => model.BizId)
+    @Html.HiddenFor(model => model.ClientId)
+    <div style="float: left; margin-bottom: 10px; width: 99%;">
+        <div id="fileUploadDivBtn">
+            Select File
+        <input type="file" name="fileBase" id="logo" class="hideBtn" /><br>
+        </div>
+        <div id="fileDetails" style="float: left; width: 99%;"></div>
+    </div>
+    <br>   
+    <input type="submit" value="Upload LOGO" style="padding: 5px 10px; background-color: rgb(0,145,206); color: #fff; border: 1px solid rgb(0,145,206)" />   
+    <br>
+    <br>
+    @Html.ValidationSummary()   
 }

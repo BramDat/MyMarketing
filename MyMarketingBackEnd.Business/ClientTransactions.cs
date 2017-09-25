@@ -106,6 +106,8 @@ namespace MyMarketingBackEnd.Business
 
             StringBuilder sb = new StringBuilder("SELECT ClientUserName FROM ClientAuthentication");
 
+            ClientDA.GetUserIDList(sb.ToString(), userIDList);
+
             return userIDList;
         }
 

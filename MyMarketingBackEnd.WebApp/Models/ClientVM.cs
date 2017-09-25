@@ -65,12 +65,12 @@ namespace MyMarketingBackEnd.WebApp.Models
             Dictionary<string, string> days = new Dictionary<string, string>();
 
             days.Add("MON", "Monday");
-            days.Add("TUE", "Monday");
-            days.Add("WED", "Monday");
-            days.Add("THU", "Monday");
-            days.Add("FRI", "Monday");
-            days.Add("SAT", "Monday");
-            days.Add("SUN", "Monday");
+            days.Add("TUE", "Tuesday");
+            days.Add("WED", "Wednesday");
+            days.Add("THU", "Thursday");
+            days.Add("FRI", "Friday");
+            days.Add("SAT", "Saturday");
+            days.Add("SUN", "Sunday");
 
             return days;
         }
