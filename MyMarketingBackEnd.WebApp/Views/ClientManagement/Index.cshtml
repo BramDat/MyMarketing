@@ -36,8 +36,8 @@
                 @Html.Partial("_UploadLogo", Model.Business[0], Html.ViewData);
                                                                               break;
                     case "4":
-                @Html.Partial("_UploadToGallery", Model, Html.ViewData);
-                                                                       break;
+                @Html.Partial("_UploadToGallery", Model.Business[0], Html.ViewData);
+                                                                                   break;
                 }
 
             }

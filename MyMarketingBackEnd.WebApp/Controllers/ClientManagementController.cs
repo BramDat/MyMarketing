@@ -21,6 +21,8 @@ namespace MyMarketingBackEnd.WebApp.Controllers
         ControllerHelper ControllerHelper = new ControllerHelper();
         private const int WORKFLOW_START_NUM = 1;
 
+        public static int fileUploadCount = 0;
+
         public ActionResult Index()
         {
             ViewData["StartStepNum"] = WORKFLOW_START_NUM;
@@ -147,7 +149,7 @@ namespace MyMarketingBackEnd.WebApp.Controllers
             {
                 try
                 {
-                    clientObj.BizLogoPath = ControllerHelper.GetLogoFileRelativePath(clientObj.ClientId, fileBase.FileName);
+                    clientObj.BizLogoPath = ControllerHelper.GetLogoFileRelativePath(clientObj.ClientId, fileBase.FileName); // To save the complete path to DB in following steps
                     if (ControllerHelper.SaveLogo(clientObj, fileBase))
                     {
                         if (BusinessBAObject.UploadLogo(clientObj))
@@ -184,13 +186,42 @@ namespace MyMarketingBackEnd.WebApp.Controllers
             }
         }
 
-        [ActionName("UploadToGallery")]
+
         [ChildActionOnly]
         public ActionResult SaveImagesToGallery(ClientVM clientObj, string currentStep)
         {
             ModelState.Remove("currentStep");
             ViewData["StartStepNum"] = currentStep;
             return View("Index", clientObj);
+        }
+
+        [HttpPost]
+        [ActionName("UploadToGallery")]
+        public ActionResult UploadGalleryImages(ClientBusiness clientVMObj, string currentStep, HttpPostedFileBase[] fileBaseList)
+        {
+            try
+            {
+                if (ControllerHelper.SaveGalleryImages(clientVMObj, fileBaseList))
+                {
+                    if (BusinessBAObject.UploadGallery(clientVMObj, ControllerHelper.GetFileNames(fileBaseList)))
+                    {
+                        ViewData["StartStepNum"] = (Convert.ToInt32(currentStep) + 1).ToString();
+                    }
+                    else
+                    {
+                        // delete files
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                ModelState.AddModelError("", "Some error occurred");
+                ModelState.AddModelError("e", ex);
+                ViewData["StartStepNum"] = currentStep;
+            }
+
+            fileUploadCount = 0;
+            return View("Index");
         }
 
         [HttpGet]
@@ -230,6 +261,11 @@ namespace MyMarketingBackEnd.WebApp.Controllers
         {
             string pswd = Utility.Utility.GeneratePassword();
             return Json(pswd, JsonRequestBehavior.AllowGet);
+        }
+
+        public JsonResult GetProgress()
+        {
+            return Json(fileUploadCount.ToString(), JsonRequestBehavior.AllowGet);
         }
     }
 }

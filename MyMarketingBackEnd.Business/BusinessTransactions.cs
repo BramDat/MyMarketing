@@ -33,6 +33,22 @@ namespace MyMarketingBackEnd.Business
             return payPeriodList;
         }
 
+        public List<ClientBusiness> GetBusinessDetails(int clientId)
+        {
+            List<ClientBusiness> cbObj = new List<ClientBusiness>();
+
+            StringBuilder sb = new StringBuilder("SELECT B.ClientBusinessDetailId, B.ClientId,B.BusinessCategoryTypeId,B.BusinessSubCategoryType,B.PayPeriodTypeId,B.BusinessHours,B.IsPremiumCustomer,");
+            sb.Append("B.NegotiatedPrice,B.IsBulkDataReceived,B.IsMobileNumberToBePublicAccess,B.LocationLongitude,B.LocationLattitude,B.CreatedDate,");
+            sb.Append("B.IsActive,B.BusinessDescription,B.BusinessGalleryPath,B.BusinessWebSite,B.BusinessLogoPath,B.BusinessSubCategoryNativeType,");
+            sb.Append("BG.GalleryId, BG.ImageName, BG.UploadedDate FROM ClientBusinessDetails B LEFT OUTER JOIN ClientBusinessGallery BG ON ");
+            sb.Append("B.ClientBusinessDetailId=BG.ClientBusinessDetailId WHERE B.ClientId=@ClientId");
+
+            if (clientDA.GetFullBusinessData(clientId, sb.ToString(), cbObj))
+                return cbObj;
+            else
+                return null;
+        }
+
         public bool SaveBusinessDetails(ClientBusiness clientBixObj)
         {
             bool returnFlag = default(bool);
@@ -79,25 +95,15 @@ namespace MyMarketingBackEnd.Business
             }
         }
 
-        public bool UploadGallery()
+        public bool UploadGallery(ClientBusiness cbObject, string[] fileList)
         {
-            throw new NotImplementedException();
-        }
+            StringBuilder sb = new StringBuilder("INSERT INTO [dbo].[ClientBusinessGallery] ([ClientBusinessDetailId],[ImageName],[UploadedDate],[IsActive])");
+            sb.Append("VALUES (@ClientBusinessDetailId,@ImageName,@UploadedDate,@IsActive)");
 
-        public List<ClientBusiness> GetBusinessDetails(int clientId)
-        {
-            List<ClientBusiness> cbObj = new List<ClientBusiness>();
-
-            StringBuilder sb = new StringBuilder("SELECT B.ClientBusinessDetailId, B.ClientId,B.BusinessCategoryTypeId,B.BusinessSubCategoryType,B.PayPeriodTypeId,B.BusinessHours,B.IsPremiumCustomer,");
-            sb.Append("B.NegotiatedPrice,B.IsBulkDataReceived,B.IsMobileNumberToBePublicAccess,B.LocationLongitude,B.LocationLattitude,B.CreatedDate,");
-            sb.Append("B.IsActive,B.BusinessDescription,B.BusinessGalleryPath,B.BusinessWebSite,B.BusinessLogoPath,B.BusinessSubCategoryNativeType,");
-            sb.Append("BG.GalleryId, BG.ImageName, BG.UploadedDate FROM ClientBusinessDetails B LEFT OUTER JOIN ClientBusinessGallery BG ON ");
-            sb.Append("B.ClientBusinessDetailId=BG.ClientBusinessDetailId WHERE B.ClientId=@ClientId");
-
-            if (clientDA.GetFullBusinessData(clientId, sb.ToString(), cbObj))
-                return cbObj;
+            if (clientDA.AddGalleryDetails(cbObject, fileList, sb.ToString()))
+                return true;
             else
-                return null;
+                return false;
         }
 
     }

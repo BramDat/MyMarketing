@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using MyMarketingBackEnd.BusinessObjects;
+using System.ComponentModel.DataAnnotations;
 
 namespace MyMarketingBackEnd.WebApp.Models
 {

@@ -74,6 +74,29 @@ namespace MyMarketingBackEnd.WebApp.App_Code
             }
         }
 
+        public bool SaveGalleryImages(ClientBusiness clientObj, HttpPostedFileBase[] fileList)
+        {
+            try
+            {
+                string logoDir = this.GetFullGalleryDirectory(clientObj.ClientId);
+                DirectoryInfo di = new DirectoryInfo(logoDir);
+                if (!di.Exists)
+                    di.Create();
+                foreach (var fileBase in fileList)
+                {
+                    string logoFileFullPath = Path.Combine(logoDir, Path.GetFileName(fileBase.FileName));
+                    fileBase.SaveAs(logoFileFullPath);
+                    WebApp.Controllers.ClientManagementController.fileUploadCount += 1;
+                }
+                return true;
+
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
         public bool DeleteLogoOnDBUpdateFail(ClientBusiness clientObj, HttpPostedFileBase fileBase)
         {
             string logoDir = this.GetFullLogoDirectory(clientObj.ClientId);
@@ -84,6 +107,21 @@ namespace MyMarketingBackEnd.WebApp.App_Code
                 fi.Delete();
             }
             return true;
+        }
+
+        public string[] GetFileNames(HttpPostedFileBase[] fileList)
+        {
+            List<string> fileNames = new List<string>();
+
+            foreach (var item in fileList)
+            {
+                fileNames.Add(item.FileName);
+            }
+
+            if (fileNames.Count > 0)
+                return fileNames.ToArray();
+            else
+                return null;
         }
     }
 }
