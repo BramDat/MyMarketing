@@ -21,5 +21,9 @@ namespace MyMarketingBackEnd.Business
 
         List<ClientBusiness> GetBusinessDetails(int clientId);
 
+        Dictionary<int, string> GetBusinessList(int ClientId);
+
+        Dictionary<int, string> GetBusinessList();
+
     }
 }

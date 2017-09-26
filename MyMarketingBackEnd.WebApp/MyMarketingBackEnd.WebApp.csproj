@@ -109,7 +109,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Code\ControllerHelper.cs" />
-    <Compile Include="Controllers\BusinessController.cs" />
+    <Compile Include="Controllers\BusinessManagementController.cs" />
+    <Compile Include="Models\BusinessNameListVM.cs" />
     <Compile Include="Utility\Utility.cs" />
     <Compile Include="App_Code\ViewModelManager.cs" />
     <Compile Include="Controllers\ClientManagementController.cs" />
@@ -212,6 +213,15 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\ClientManagement\_Complete.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\BusinessManagement\Index.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\BusinessManagement\EditBusiness.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\BusinessManagement\_BusinessDetailsFull.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

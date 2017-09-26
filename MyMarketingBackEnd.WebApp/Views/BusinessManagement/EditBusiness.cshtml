@@ -1,0 +1,50 @@
+﻿@model MyMarketingBackEnd.WebApp.Models.BusinessNameListVM
+@{
+    ViewBag.Title = "EditBusiness";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<script src='@Url.Content("~/Content/Scripts/jquery.unobtrusive-ajax.js")'></script>
+<div id="mainContent">
+    <fieldset>
+        <legend>
+            <h2>Edit Business Details</h2>
+        </legend>
+        <div id="cListTBLWrap">
+            <table id="tblClientList">
+                <tbody>
+                    <tr>
+                        <td>Select A Business To Edit:
+                        </td>
+                        <td>
+                            @Html.DropDownListFor(model => model.SelectedBusinessId, new SelectList(Model.BusinessList, "Key", "Value"), new { onchange = "OnChangeBizList(this.options[this.selectedIndex].value);" })
+                        </td>
+                        <td>
+                            @Ajax.ActionLink("Edit Details", "GetBusinessDetails", "BusinessManagement", new { id = Model.SelectedBusinessId }, new AjaxOptions()
+                       {
+                           HttpMethod = "GET",
+                           InsertionMode = InsertionMode.InsertAfter,
+                           UpdateTargetId = "selectedBizDetails",
+                           LoadingElementId = "manualLoading"
+                       }, new { id = "editLinkBtn" })
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div id="selectedBizDetails">
+        </div>
+    </fieldset>
+</div>
+
+<script>
+    $(document).ready(function () {
+
+    });
+
+    function OnChangeBizList(val) {
+        var oldUrl = $("#editLinkBtn").attr("href"); // Get current url
+        var urlParts = oldUrl.split('/');
+        var newUrl = oldUrl.replace(urlParts[urlParts.length - 1], val);
+        $("#editLinkBtn").attr("href", newUrl);
+    }
+</script>

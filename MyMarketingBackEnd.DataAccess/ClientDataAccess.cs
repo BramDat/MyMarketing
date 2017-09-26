@@ -412,6 +412,7 @@ namespace MyMarketingBackEnd.DataAccess
                 {
                     con.Open();
                     SqlCommand cmd = new SqlCommand(selectQuery, con);
+                    cmd.Parameters.Add(new SqlParameter() { ParameterName = "@ClientId", Value = clientId, SqlDbType = SqlDbType.Int });
 
                     SqlDataReader dr = cmd.ExecuteReader();
 
@@ -476,8 +477,159 @@ namespace MyMarketingBackEnd.DataAccess
             {
                 return false;
             }
+        }
 
-            return true;
+        public bool GetSpecificBusinessData(int businessId, string selectQuery, ref ClientBusiness cbObj)
+        {
+            /* Using a list because joined query result of business details and gallery would return multiple records with distinct gallery details 
+             for a single businessID */
+            List<ClientBusiness> businessList = new List<ClientBusiness>();
+            if (cbObj == null)
+                cbObj = new ClientBusiness();
+
+            try
+            {
+                using (SqlConnection con = new SqlConnection(ConnectionStr))
+                {
+                    con.Open();
+                    SqlCommand cmd = new SqlCommand(selectQuery, con);
+                    cmd.Parameters.Add(new SqlParameter() { ParameterName = "@BusinessId", Value = businessId, SqlDbType = SqlDbType.Int });
+
+                    SqlDataReader dr = cmd.ExecuteReader();
+
+                    if (dr.HasRows)
+                    {
+                        while (dr.Read())
+                        {
+                            ClientBusiness cb = new ClientBusiness();
+                            cb.BizId = Convert.ToInt32(dr["ClientBusinessDetailId"]);
+
+                            if (businessList.Count > 0 && businessList.Any(x => x.BizId == cb.BizId))
+                            {
+                                // Add gallery details to the existing element's biz details
+                                ClientBusinessGallery cbg = new ClientBusinessGallery();
+
+                                cbg.GalleryId = Convert.ToInt32(dr["GalleryId"]);
+                                cbg.ImageName = Convert.ToString(dr["ImageName"]);
+                                cbg.UploadDate = Convert.ToDateTime(dr["UploadedDate"]);
+
+                                businessList.Where(x => x.BizId == cb.BizId).FirstOrDefault().GalleryList.Add(cbg);
+
+                                continue;
+                            }
+
+                            cb.BizCategoryId = Convert.ToInt32(dr["BusinessCategoryTypeId"]);
+                            cb.BizSubCategoryType = Convert.ToString(dr["BusinessSubCategoryType"]);
+                            cb.ClientId = Convert.ToInt32(dr["PayPeriodTypeId"]);
+                            //cb. = Convert.ToString(dr["BusinessHours"]);
+                            cb.IsPremiumBiz = Convert.ToBoolean(dr["IsPremiumCustomer"]);
+                            cb.NegotiatedPrice = Convert.ToDecimal(dr["NegotiatedPrice"]);
+                            cb.IsBuldDataReceived = Convert.ToBoolean(dr["IsBulkDataReceived"]);
+                            cb.IsPhonePublic = Convert.ToBoolean(dr["IsMobileNumberToBePublicAccess"]);
+                            cb.GeoLongitude = String.IsNullOrEmpty(dr["LocationLongitude"].ToString()) ? 0 : Convert.ToDecimal(dr["LocationLongitude"]);
+                            cb.GeoLatitude = String.IsNullOrEmpty(dr["LocationLattitude"].ToString()) ? 0 : Convert.ToDecimal(dr["LocationLattitude"]);
+                            cb.CreatedDate = Convert.ToDateTime(dr["CreatedDate"]);
+                            cb.IsActive = Convert.ToBoolean(dr["IsActive"]);
+                            cb.BizDescription = Convert.ToString(dr["BusinessDescription"]);
+                            cb.BizGalleryPath = Convert.ToString(dr["BusinessGalleryPath"]);
+                            cb.BizWebSite = Convert.ToString(dr["BusinessWebSite"] == null ? "" : dr["BusinessWebSite"]);
+                            cb.BizLogoPath = Convert.ToString(dr["BusinessLogoPath"]);
+                            cb.BizSubCategoryNativeType = dr["BusinessSubCategoryNativeType"] == null ? "" : Convert.ToString(dr["BusinessSubCategoryNativeType"]);
+
+                            int galleryId = String.IsNullOrEmpty(dr["GalleryId"].ToString()) ? 0 : Convert.ToInt32(dr["GalleryId"]);
+
+                            if (galleryId != 0)
+                            {
+                                ClientBusinessGallery cbg2 = new ClientBusinessGallery();
+
+                                cbg2.GalleryId = galleryId;
+                                cbg2.ImageName = dr["ImageName"] == null ? "" : Convert.ToString(dr["ImageName"]);
+                                cbg2.UploadDate = dr["UploadedDate"] == null ? DateTime.MinValue : Convert.ToDateTime(dr["UploadedDate"]);
+
+                                cb.GalleryList = new List<ClientBusinessGallery>();
+
+                                cb.GalleryList.Add(cbg2);
+                            }
+
+                            businessList.Add(cb);
+                        }
+                        cbObj = businessList[0];
+                    }
+                }
+                return true;
+            }
+            catch (Exception ex)
+            {
+                return false;
+            }
+        }
+
+        /// <summary>
+        /// To get all business Names and their IDs
+        /// </summary>
+        /// <returns></returns>
+        public Dictionary<int, string> GetBusinessList(string selectQuery)
+        {
+            Dictionary<int, string> bizList = new Dictionary<int, string>();
+
+            try
+            {
+                using (SqlConnection con = new SqlConnection(ConnectionStr))
+                {
+                    con.Open();
+                    SqlCommand cmd = new SqlCommand(selectQuery, con);
+
+                    SqlDataReader dr = cmd.ExecuteReader();
+
+                    if (dr.HasRows)
+                    {
+                        while (dr.Read())
+                        {
+                            bizList.Add(Convert.ToInt32(dr["ClientBusinessDetailId"]), Convert.ToString(dr["BusinessName"]));
+                        }
+                    }
+                }
+                return bizList;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        /// <summary>
+        /// Get businesses belonging to a single client
+        /// </summary>
+        /// <param name="clientId"></param>
+        /// <returns></returns>
+        public Dictionary<int, string> GetBusinessList(int clientId, string selectQuery)
+        {
+            Dictionary<int, string> bizList = new Dictionary<int, string>();
+
+            try
+            {
+                using (SqlConnection con = new SqlConnection(ConnectionStr))
+                {
+                    con.Open();
+                    SqlCommand cmd = new SqlCommand(selectQuery, con);
+                    cmd.Parameters.Add(new SqlParameter() { SqlDbType = SqlDbType.Int, Value = clientId, ParameterName = "@ClientId" });
+
+                    SqlDataReader dr = cmd.ExecuteReader();
+
+                    if (dr.HasRows)
+                    {
+                        while (dr.Read())
+                        {
+                            bizList.Add(Convert.ToInt32(dr["ClientBusinessDetailId"]), Convert.ToString(dr["BusinessName"]));
+                        }
+                    }
+                }
+                return bizList;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
         }
 
         #endregion

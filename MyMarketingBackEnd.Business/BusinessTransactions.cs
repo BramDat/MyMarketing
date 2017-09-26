@@ -49,6 +49,28 @@ namespace MyMarketingBackEnd.Business
                 return null;
         }
 
+        public Dictionary<int, string> GetBusinessList()
+        {
+            Dictionary<int, string> bizList = new Dictionary<int, string>();
+
+            StringBuilder sb = new StringBuilder("SELECT CB.ClientBusinessDetailId, C.BusinessName FROM Client C JOIN ClientBusinessDetails CB ON C.ClientId = CB.ClientId");
+
+            bizList = clientDA.GetBusinessList(sb.ToString());
+
+            return bizList;
+        }
+
+        public Dictionary<int, string> GetBusinessList(int ClientId)
+        {
+            Dictionary<int, string> bizList = new Dictionary<int, string>();
+
+            StringBuilder sb = new StringBuilder("SELECT CB.ClientBusinessDetailId, C.BusinessName FROM Client C JOIN ClientBusinessDetails CB ON C.ClientId = CB.ClientId  WHERE C.ClientId = @ClientId");
+
+            bizList = clientDA.GetBusinessList(ClientId, sb.ToString());
+
+            return bizList;
+        }
+
         public bool SaveBusinessDetails(ClientBusiness clientBixObj)
         {
             bool returnFlag = default(bool);
@@ -106,5 +128,22 @@ namespace MyMarketingBackEnd.Business
                 return false;
         }
 
+        public void GetBusinessDetails(int businessId, ref ClientBusiness cbObj)
+        {
+            StringBuilder sb = new StringBuilder("SELECT B.ClientBusinessDetailId, B.ClientId,B.BusinessCategoryTypeId,B.BusinessSubCategoryType,B.PayPeriodTypeId,B.BusinessHours,B.IsPremiumCustomer,");
+            sb.Append("B.NegotiatedPrice,B.IsBulkDataReceived,B.IsMobileNumberToBePublicAccess,B.LocationLongitude,B.LocationLattitude,B.CreatedDate,");
+            sb.Append("B.IsActive,B.BusinessDescription,B.BusinessGalleryPath,B.BusinessWebSite,B.BusinessLogoPath,B.BusinessSubCategoryNativeType,");
+            sb.Append("BG.GalleryId, BG.ImageName, BG.UploadedDate FROM ClientBusinessDetails B LEFT OUTER JOIN ClientBusinessGallery BG ON ");
+            sb.Append("B.ClientBusinessDetailId=BG.ClientBusinessDetailId WHERE B.ClientBusinessDetailId=@BusinessId");
+
+            try
+            {
+                clientDA.GetSpecificBusinessData(businessId, sb.ToString(), ref cbObj);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
     }
 }

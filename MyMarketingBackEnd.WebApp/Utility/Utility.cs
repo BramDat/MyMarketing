@@ -48,6 +48,26 @@ namespace MyMarketingBackEnd.WebApp.Utility
             else
                 return false;
         }
+
+        public static string GetFileExtension(string fileName)
+        {
+            string[] nameParts = fileName.Split('.');
+
+            if (nameParts.Count() < 1)
+                return "";
+            else
+                return nameParts[nameParts.Length - 1];
+        }
+
+        public static string GetFileNameFromPath(string fileFullPath)
+        {
+            string[] pathParts = fileFullPath.Split('\\');
+
+            if (pathParts.Length < 1)
+                return "";
+            else
+                return pathParts[pathParts.Length - 1];
+        }
     }
 
     public enum TransactionMode
