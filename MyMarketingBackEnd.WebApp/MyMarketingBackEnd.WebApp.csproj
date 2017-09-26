@@ -109,6 +109,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Code\ControllerHelper.cs" />
+    <Compile Include="Controllers\BusinessController.cs" />
     <Compile Include="Utility\Utility.cs" />
     <Compile Include="App_Code\ViewModelManager.cs" />
     <Compile Include="Controllers\ClientManagementController.cs" />
@@ -208,6 +209,9 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Shared\Alerts\_msgAlert.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\ClientManagement\_Complete.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
