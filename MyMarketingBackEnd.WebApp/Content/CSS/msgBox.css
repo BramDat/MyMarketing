@@ -1,7 +1,7 @@
 ﻿/* Session TimeOut AlertBox */
 
 #customAlert {
-    display: none;
+    /*display: none;*/
     width: 450px;
     height: 200px;
     background-color: #fff;

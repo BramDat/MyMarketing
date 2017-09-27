@@ -224,6 +224,37 @@ namespace MyMarketingBackEnd.DataAccess
             }
         }
 
+        public bool AddGalleryDetails(ClientBusiness clientObj, string[] fileNames, string insertQuery)
+        {
+            SqlTransaction objTrans = null;
+            using (SqlConnection con = new SqlConnection(ConnectionStr))
+            {
+                con.Open();
+                objTrans = con.BeginTransaction();
+                try
+                {
+                    foreach (var item in fileNames)
+                    {
+                        SqlCommand cmd = new SqlCommand(insertQuery, con);
+                        cmd.Transaction = objTrans;
+                        cmd.Parameters.Add(new SqlParameter() { ParameterName = "@ClientBusinessDetailId", SqlDbType = SqlDbType.Int, Value = clientObj.BizId });
+                        cmd.Parameters.Add(new SqlParameter() { ParameterName = "@ImageName", SqlDbType = SqlDbType.VarChar, Value = item, Size = 40 });
+                        cmd.Parameters.Add(new SqlParameter() { ParameterName = "@UploadedDate", SqlDbType = SqlDbType.DateTime, Value = DateTime.Now });
+                        cmd.Parameters.Add(new SqlParameter() { ParameterName = "@IsActive", SqlDbType = SqlDbType.Bit, Value = true });
+                        cmd.ExecuteNonQuery();
+                    }
+                    objTrans.Commit();
+                }
+                catch (Exception ex)
+                {
+                    objTrans.Rollback();
+                    con.Close();
+                    throw ex;
+                }
+                return true;
+            }
+        }
+
         public bool UpdateClientDetails(Client clientObj, string updateQuery)
         {
             try
@@ -263,37 +294,52 @@ namespace MyMarketingBackEnd.DataAccess
             }
         }
 
-        public bool AddGalleryDetails(ClientBusiness clientObj, string[] fileNames, string insertQuery)
+        public bool UpdateBusinessDetails(ClientBusiness clientObj, string updateQuery)
         {
-            SqlTransaction objTrans = null;
-            using (SqlConnection con = new SqlConnection(ConnectionStr))
+            try
             {
-                con.Open();
-                objTrans = con.BeginTransaction();
-                try
+                using (SqlConnection con = new SqlConnection(ConnectionStr))
                 {
-                    foreach (var item in fileNames)
+                    con.Open();
+                    SqlCommand cmd = new SqlCommand(updateQuery, con);
+
+                    string bizHours = Common.StringHelper.FormatBusinessHours(clientObj.BizStartHours, clientObj.BizEndHours, clientObj.BizStartWeekDay, clientObj.BizEndWeekDay);
+
+                    List<SqlParameter> sParamList = new List<SqlParameter>()
                     {
-                        SqlCommand cmd = new SqlCommand(insertQuery, con);
-                        cmd.Transaction = objTrans;
-                        cmd.Parameters.Add(new SqlParameter() { ParameterName = "@ClientBusinessDetailId", SqlDbType = SqlDbType.Int, Value = clientObj.BizId });
-                        cmd.Parameters.Add(new SqlParameter() { ParameterName = "@ImageName", SqlDbType = SqlDbType.VarChar, Value = item, Size = 40 });
-                        cmd.Parameters.Add(new SqlParameter() { ParameterName = "@UploadedDate", SqlDbType = SqlDbType.DateTime, Value = DateTime.Now });
-                        cmd.Parameters.Add(new SqlParameter() { ParameterName = "@IsActive", SqlDbType = SqlDbType.Bit, Value = true });
-                        cmd.ExecuteNonQuery();
-                    }
-                    objTrans.Commit();
+                        new SqlParameter(){ParameterName="@ClientId",SqlDbType=SqlDbType.Int,Value=clientObj.ClientId},
+                        new SqlParameter(){ParameterName="@ClientBusinessDetailId",SqlDbType=SqlDbType.Int,Value=clientObj.BizId},
+                        new SqlParameter(){ParameterName="@BusinessCategoryTypeId",SqlDbType=SqlDbType.Int,Value=clientObj.BizCategoryId},
+                        new SqlParameter(){ParameterName="@BusinessSubCategoryType",SqlDbType=SqlDbType.VarChar,Value=DBHelper.DefaultForDBNullValues(clientObj.BizSubCategoryType), Size=40},
+                        new SqlParameter(){ParameterName="@PayPeriodTypeId",SqlDbType=SqlDbType.Int,Value=clientObj.PayPeriodId},
+                        new SqlParameter(){ParameterName="@BusinessHours",SqlDbType=SqlDbType.VarChar,Value=DBHelper.DefaultForDBNullValues(bizHours), Size=200},
+                        new SqlParameter(){ParameterName="@IsPremiumCustomer",SqlDbType=SqlDbType.Bit,Value=clientObj.IsPremiumBiz},
+                        new SqlParameter(){ParameterName="@NegotiatedPrice",SqlDbType=SqlDbType.Decimal,Value=clientObj.NegotiatedPrice},
+                        new SqlParameter(){ParameterName="@IsBulkDataReceived",SqlDbType=SqlDbType.Bit,Value=clientObj.IsBuldDataReceived},
+                        new SqlParameter(){ParameterName="@IsMobileNumberToBePublicAccess",SqlDbType=SqlDbType.Bit,Value=clientObj.IsPhonePublic},
+                        new SqlParameter(){ParameterName="@LocationLongitude",SqlDbType=SqlDbType.Decimal,Value=DBHelper.DefaultForDBNullValues(clientObj.GeoLatitude), Precision=8, Scale=6},
+                        new SqlParameter(){ParameterName="@LocationLattitude",SqlDbType=SqlDbType.Decimal,Value=DBHelper.DefaultForDBNullValues(clientObj.GeoLongitude), Precision=8, Scale=6},
+                        new SqlParameter(){ParameterName="@CreatedDate",SqlDbType=SqlDbType.DateTime,Value=DateTime.Now},
+                        new SqlParameter(){ParameterName="@IsActive",SqlDbType=SqlDbType.Bit,Value=clientObj.IsActive},
+                        new SqlParameter(){ParameterName="@BusinessDescription",SqlDbType=SqlDbType.VarChar,Value=clientObj.BizDescription, Size=750},
+                        new SqlParameter(){ParameterName="@BusinessGalleryPath",SqlDbType=SqlDbType.VarChar,Value=clientObj.BizGalleryPath, Size=750},
+                        new SqlParameter(){ParameterName="@BusinessWebSite",SqlDbType=SqlDbType.VarChar,Value=DBHelper.DefaultForDBNullValues(clientObj.BizWebSite), Size=200},
+                        new SqlParameter(){ParameterName="@BusinessLogoPath",SqlDbType=SqlDbType.VarChar,Value=DBNull.Value, Size=750},
+                        new SqlParameter(){ParameterName="@BusinessSubCategoryNativeType",SqlDbType=SqlDbType.VarChar,Value=DBHelper.DefaultForDBNullValues(clientObj.BizSubCategoryNativeType), Size=80}
+                    };
+
+                    cmd.Parameters.AddRange(sParamList.ToArray());
+
+                    cmd.ExecuteNonQuery();
                 }
-                catch (Exception ex)
-                {
-                    objTrans.Rollback();
-                    con.Close();
-                    throw ex;
-                }
+
                 return true;
             }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
         }
-
 
         #endregion
 
@@ -442,7 +488,8 @@ namespace MyMarketingBackEnd.DataAccess
 
                             cb.BizCategoryId = Convert.ToInt32(dr["BusinessCategoryTypeId"]);
                             cb.BizSubCategoryType = Convert.ToString(dr["BusinessSubCategoryType"]);
-                            cb.ClientId = Convert.ToInt32(dr["PayPeriodTypeId"]);
+                            cb.ClientId = Convert.ToInt32(dr["ClientId"]);
+                            cb.PayPeriodId = Convert.ToInt32(dr["PayPeriodTypeId"]);
                             //cb. = Convert.ToString(dr["BusinessHours"]);
                             cb.IsPremiumBiz = Convert.ToBoolean(dr["IsPremiumCustomer"]);
                             cb.NegotiatedPrice = Convert.ToDecimal(dr["NegotiatedPrice"]);
@@ -520,7 +567,8 @@ namespace MyMarketingBackEnd.DataAccess
 
                             cb.BizCategoryId = Convert.ToInt32(dr["BusinessCategoryTypeId"]);
                             cb.BizSubCategoryType = Convert.ToString(dr["BusinessSubCategoryType"]);
-                            cb.ClientId = Convert.ToInt32(dr["PayPeriodTypeId"]);
+                            cb.ClientId = Convert.ToInt32(dr["ClientId"]);
+                            cb.PayPeriodId = Convert.ToInt32(dr["PayPeriodTypeId"]);
                             //cb. = Convert.ToString(dr["BusinessHours"]);
                             cb.IsPremiumBiz = Convert.ToBoolean(dr["IsPremiumCustomer"]);
                             cb.NegotiatedPrice = Convert.ToDecimal(dr["NegotiatedPrice"]);

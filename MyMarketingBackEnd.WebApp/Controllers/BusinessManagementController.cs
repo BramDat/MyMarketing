@@ -59,7 +59,7 @@ namespace MyMarketingBackEnd.WebApp.Controllers
             BusinessNameListVM model = new BusinessNameListVM();
             try
             {
-                if (businessBAObject.SaveBusinessDetails(obj.Business[0]))
+                if (businessBAObject.UpdateBusinessDetails(obj.Business[0]))
                     ViewData["Message"] = DBTransactionStatus.Success;
                 else
                     ViewData["Message"] = DBTransactionStatus.Failure;

@@ -13,7 +13,7 @@ namespace MyMarketingBackEnd.Business
 
         bool SaveBusinessDetails(ClientBusiness clientBixObj);
 
-        bool UpdateBusinessDetails();
+        bool UpdateBusinessDetails(ClientBusiness clientBizObj);
 
         bool UploadGallery(ClientBusiness cbObject, string[] fileList);
 

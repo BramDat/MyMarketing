@@ -95,9 +95,28 @@ namespace MyMarketingBackEnd.Business
             return returnFlag;
         }
 
-        public bool UpdateBusinessDetails()
+        public bool UpdateBusinessDetails(ClientBusiness clientBizObj)
         {
-            throw new NotImplementedException();
+            try
+            {
+                StringBuilder updateQuery = new StringBuilder("UPDATE [dbo].[ClientBusinessDetails] SET [ClientId] = @ClientId, [BusinessCategoryTypeId] = @BusinessCategoryTypeId, ");
+                updateQuery.Append("[BusinessSubCategoryType] = @BusinessSubCategoryType, [PayPeriodTypeId] = @PayPeriodTypeId, ");
+                updateQuery.Append("[BusinessHours] = @BusinessHours, [IsPremiumCustomer] = @IsPremiumCustomer, [NegotiatedPrice] = @NegotiatedPrice, ");
+                updateQuery.Append("[IsBulkDataReceived] = @IsBulkDataReceived, [IsMobileNumberToBePublicAccess] = @IsMobileNumberToBePublicAccess, ");
+                updateQuery.Append("[LocationLongitude] = @LocationLongitude, [LocationLattitude] = @LocationLattitude, [CreatedDate] = @CreatedDate, ");
+                updateQuery.Append("[IsActive] = @IsActive, [BusinessDescription] = @BusinessDescription, [BusinessGalleryPath] = @BusinessGalleryPath, ");
+                updateQuery.Append("[BusinessWebSite] = @BusinessWebSite, [BusinessLogoPath] = @BusinessLogoPath, ");
+                updateQuery.Append("[BusinessSubCategoryNativeType] = @BusinessSubCategoryNativeType WHERE ClientBusinessDetailId = @ClientBusinessDetailId");
+
+                if (clientDA.UpdateBusinessDetails(clientBizObj, updateQuery.ToString()))
+                    return true;
+                else
+                    throw new Exception("Some error occured while saving business data to DB");
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
         }
 
         public bool UploadLogo(ClientBusiness cbObject)
