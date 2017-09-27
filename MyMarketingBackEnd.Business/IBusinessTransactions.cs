@@ -7,9 +7,10 @@ using System.Threading.Tasks;
 
 namespace MyMarketingBackEnd.Business
 {
+    public delegate bool DeletePhysicalImage(int clientId, string imageName);
+
     public interface IBusinessTransactions
     {
-        Dictionary<int, string> GetBusinessCategory();
 
         bool SaveBusinessDetails(ClientBusiness clientBixObj);
 
@@ -25,5 +26,8 @@ namespace MyMarketingBackEnd.Business
 
         Dictionary<int, string> GetBusinessList();
 
+        Dictionary<int, string> GetBusinessCategory();
+
+        bool RemoveGalleryImage(int galleryId, int clientId, string imageName, DeletePhysicalImage deleteImage);
     }
 }

@@ -341,6 +341,26 @@ namespace MyMarketingBackEnd.DataAccess
             }
         }
 
+        public bool RemoveGalleryPic(int galleryId, string deleteQuery)
+        {
+            try
+            {
+                using (SqlConnection con = new SqlConnection(ConnectionStr))
+                {
+                    con.Open();
+                    SqlCommand cmd = new SqlCommand(deleteQuery, con);
+                    cmd.Parameters.Add(new SqlParameter() { ParameterName = "@GalleryId", SqlDbType = SqlDbType.Int, Value = galleryId });
+
+                    cmd.ExecuteNonQuery();
+                    return true;
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
         #endregion
 
         #region READ CLIENT OR BUSINESS SPECIFIC DATA

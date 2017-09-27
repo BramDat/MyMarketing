@@ -119,7 +119,7 @@
             </td>
             <td>Gallery Photos</td>
             <td>
-                @if (Model.Business[0].GalleryList != null && Model.Business[0].GalleryList.Count < 1)
+                @if (Model.Business[0].GalleryList != null && Model.Business[0].GalleryList.Count > 0)
                 {
                     <ul style="list-style: none;">
                         @foreach (var item in Model.Business[0].GalleryList)
@@ -145,8 +145,24 @@
                                         <img src="@Url.Content("~/Content/Images/jpg_icon.jpg")" />
                                     }
                                     <span>@imageName</span>
-                                    @Html.ActionLink("View", "", "", null, null)
-                                    @Html.ActionLink("Delete", "", "", null, null)
+                                    <span>@Ajax.ActionLink("View", "GetImageToView", "BusinessManagement", new { clientId = item.GalleryId, imageName = item.ImageName }, new AjaxOptions()
+                       {
+                           HttpMethod = "GET",
+                           InsertionMode = InsertionMode.InsertAfter,
+                           //OnBegin = "clearFormBeforeCall",
+                           UpdateTargetId = "imageViewerDad",
+                           OnComplete = "OnViewImageComplete",
+                           LoadingElementId = "manualLoading"
+                       }, new { id = "viewImageBtn" })</span>
+                                    <span>@Ajax.ActionLink("Delete", "RemoveGalleryPic", "BusinessManagement", new { galleryId = item.GalleryId, clientId = Model.Business[0].ClientId, imageName = item.ImageName }, new AjaxOptions()
+                       {
+                           HttpMethod = "GET",
+                           //InsertionMode = InsertionMode.InsertAfter,
+                           //OnBegin = "clearFormBeforeCall",
+                           //UpdateTargetId = "selectedBizDetails",
+                           OnComplete = "OnDeleteGalleryPicComplete",
+                           LoadingElementId = "manualLoading"
+                       }, new { id = "delImageBtn" })</span>
                                 </span>
                             </li>
                         }
@@ -156,3 +172,4 @@
         </tr>
     </tbody>
 </table>
+<div id="imageViewerDad"></div>

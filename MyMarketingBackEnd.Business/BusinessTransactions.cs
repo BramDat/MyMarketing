@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using MyMarketingBackEnd.DataAccess;
 using MyMarketingBackEnd.BusinessObjects;
+using System.Transactions;
 
 namespace MyMarketingBackEnd.Business
 {
@@ -12,6 +13,8 @@ namespace MyMarketingBackEnd.Business
     {
         private ClientDataAccess clientDA;
         private GenericDataReader genericDRSingleton;
+
+        //public delegate bool DeletePhysicalImage(int clientId, string imageName);
 
         public BusinessTransactions()
         {
@@ -164,5 +167,42 @@ namespace MyMarketingBackEnd.Business
                 throw ex;
             }
         }
+
+        public bool RemoveGalleryImage(int galleryId, int clientId, string imageName, DeletePhysicalImage deleteImage)
+        {
+            bool retFlag = default(bool);
+            StringBuilder deleteQuery = new StringBuilder("DELETE FROM ClientBusinessGallery WHERE GalleryId = @GalleryId");
+            // delete file
+            //  if success, remove entry from DB .. wat if data remove fails?
+            //  HENCE deleting data from DB first.. den remove physical file.. if file deletion fails, rollback data removal!
+
+            using (TransactionScope transScope = new TransactionScope())
+            {
+                try
+                {
+                    if (clientDA.RemoveGalleryPic(galleryId, deleteQuery.ToString()))
+                    {
+                        if (deleteImage.Invoke(clientId, imageName))
+                        // using delegate to execute the delete image function from Utility class in WebApp
+                        // feeling so lazy to move the utility generic functionalities to 'Common' project
+                        {
+                            transScope.Complete();
+                            retFlag = true;
+                        }
+                    }
+                }
+                catch (Exception ex)
+                {
+                    transScope.Dispose();
+                    throw ex;
+                }
+                finally
+                {
+                    transScope.Dispose();
+                }
+            }
+            return retFlag;
+        }
+
     }
 }

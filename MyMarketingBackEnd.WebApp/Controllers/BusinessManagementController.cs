@@ -1,5 +1,6 @@
 ﻿using MyMarketingBackEnd.Business;
 using MyMarketingBackEnd.BusinessObjects;
+using MyMarketingBackEnd.WebApp.App_Code;
 using MyMarketingBackEnd.WebApp.Models;
 using MyMarketingBackEnd.WebApp.Utility;
 using System;
@@ -13,6 +14,7 @@ namespace MyMarketingBackEnd.WebApp.Controllers
     public class BusinessManagementController : Controller
     {
         BusinessTransactions businessBAObject = new BusinessTransactions();
+        ControllerHelper ctrlHelperObj = new ControllerHelper();
         private GenericDataReader genericDRSingleton = GenericDataReader.GetInstance();
 
         public ActionResult Index()
@@ -76,5 +78,21 @@ namespace MyMarketingBackEnd.WebApp.Controllers
             return View("EditBusiness", model);
         }
 
+        public JsonResult RemoveGalleryPic(int galleryId, int clientId, string imageName)
+        {
+            string returnValue = default(string);
+            if (businessBAObject.RemoveGalleryImage(galleryId, clientId, imageName, ctrlHelperObj.DeleteGalleryImage))
+                returnValue = "Success";
+            else
+                returnValue = "Failure";
+            return Json(new { status = returnValue }, JsonRequestBehavior.AllowGet);
+        }
+
+        public PartialViewResult GetImageToView(int clientId, string imageName)
+        {
+            string imageRelativePath = "~/Images/Customer/21/Gallery/Penguins.jpg";
+            ViewBag.ImagePath = imageRelativePath;
+            return PartialView("_ViewImage");
+        }
     }
 }

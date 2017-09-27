@@ -4,6 +4,9 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 <script src='@Url.Content("~/Content/Scripts/jquery.unobtrusive-ajax.js")'></script>
+<link href="@Url.Content("~/Content/CSS/BusinessTableCss.css")" rel="stylesheet" />
+<script src='@Url.Content("~/Content/Scripts/jquery.bpopup.min.js")'></script>
+
 <div id="mainContent">
     <fieldset>
         <legend>
@@ -23,6 +26,7 @@
                        {
                            HttpMethod = "GET",
                            InsertionMode = InsertionMode.InsertAfter,
+                           OnBegin = "clearFormBeforeCall",
                            UpdateTargetId = "selectedBizDetails",
                            LoadingElementId = "manualLoading"
                        }, new { id = "editLinkBtn" })
@@ -40,6 +44,26 @@
     $(document).ready(function () {
 
     });
+
+    function clearFormBeforeCall() {
+        var elem = document.getElementById("selectedBizDetails");
+        while (elem.hasChildNodes()) {
+            elem.removeChild(elem.lastChild);
+        }
+    }
+
+    function OnDeleteGalleryPicComplete(data) {
+        var json = $.parseJSON(data.responseText);
+        alert(json.status);
+    }
+
+    function OnViewImageComplete(data) {
+        $("#imageViewerDad").bPopup({
+            follow: [false, true],
+            position: [300, 100],
+            modalClose: true
+        });
+    }
 
     function OnChangeBizList(val) {
         var oldUrl = $("#editLinkBtn").attr("href"); // Get current url

@@ -6,6 +6,7 @@
 
 <script src='@Url.Content("~/Content/Scripts/jquery.unobtrusive-ajax.js")'></script>
 <script src='@Url.Content("~/Content/Scripts/jquery.bpopup.min.js")'></script>
+<link href="@Url.Content("~/Content/CSS/BusinessTableCss.css")" rel="stylesheet" />
 
 <script type="text/javascript">
     function clearFormBeforeCall() {
@@ -29,57 +30,6 @@
         }
     });
 </script>
-<style>
-    #cListAdditionalDetails {
-        float: left;
-        width: 98%;
-        border: 1px solid #eee;
-    }
-
-    #cListTBLWrap {
-        float: left;
-        width: 25%;
-    }
-
-    #tblClientList {
-        font-size: 12px;
-        font-family: Tahoma;
-        color: rgb(0,162,232);
-        margin: 1% 1% 2% 1%;
-        float: left;
-        width: 98%;
-    }
-
-        #tblClientList th {
-            color: #fff;
-            background-color: blue;
-            border: 1px solid blue;
-            border-collapse: collapse;
-            padding: 2px;
-        }
-
-        #tblClientList td {
-            border: 1px solid #eee;
-            border-collapse: collapse;
-            padding: 2px;
-        }
-
-        #tblClientList .evenRow {
-            background-color: aliceblue;
-        }
-
-    #mainContent .commonPara {
-        float: left;
-        margin-left: 2%;
-        font-size: 12px;
-    }
-
-    .leftFull {
-        float: left;
-        width: 100%;
-        margin-left: 1%;
-    }
-</style>
 
 <div id="mainContent">
     <h3 class="leftFull">Edit Client</h3>

@@ -109,6 +109,18 @@ namespace MyMarketingBackEnd.WebApp.App_Code
             return true;
         }
 
+        public bool DeleteGalleryImage(int clientId, string fileNeme)
+        {
+            string logoDir = this.GetFullGalleryDirectory(clientId);
+            string logoFileFullPath = Path.Combine(logoDir, Path.GetFileName(fileNeme));
+            FileInfo fi = new FileInfo(logoFileFullPath);
+            if (fi.Exists)
+            {
+                fi.Delete();
+            }
+            return true;
+        }
+
         public string[] GetFileNames(HttpPostedFileBase[] fileList)
         {
             List<string> fileNames = new List<string>();

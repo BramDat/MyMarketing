@@ -1,0 +1,20 @@
+﻿<style>
+    #imageViewerContainer {
+        padding: 15px;
+        background-color: #fff;
+    }
+
+    #viewImgFile {
+        height: 500px;
+    }
+</style>
+<div id="imageViewerContainer">
+    @if (!string.IsNullOrEmpty(ViewBag.ImagePath))
+    {
+        <img src="@Url.Content(ViewBag.ImagePath)" alt="" id="viewImgFile" />
+    }
+    else
+    {
+        <h5>Sorry. Couldn't retrieve the file.</h5>
+    }
+</div>
